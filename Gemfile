@@ -42,6 +42,8 @@ group :development do
   gem 'rubocop-rails'
 end
 
+gem 'dotenv-rails'
+
 # Test enviroment: Rspec
 gem 'rspec-rails'
 gem 'spring-commands-rspec'

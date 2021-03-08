@@ -1,0 +1,15 @@
+<h1>営業•催事</h1>
+
+<div class="row master_plan"> 
+      <%= form_with(model: @event, url: create_plan_perfect_shifts_path, local: false) do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>       
+         <%= f.label :plan, "内容"%>
+         <%= f.text_area :plan, class:'form-control mb-3', required: true %>
+        <div class="form-inline text-left">
+         <%= f.label :start,"日付", {class:'control-label'}%>
+         <%= f.date_select :start, {default: Date.today}, class: 'form-control bootstrap-date mb-3' %>
+        </div>
+         <br>
+         <%= f.submit "登録",   class: "btn btn-primary js-event-create-btn" %>
+      <% end %>
+</div>        

@@ -1,0 +1,16 @@
+<div class="wrapper">  
+  <section class="info">   
+    <h1>シフト時間割の一覧</h1>
+      <ul>
+          <% @shift_separations.each do |shift_separation| %>
+              <li> 
+                <%= link_to shift_separation.name, edit_master_shift_separation_path(current_master,shift_separation) %>　  
+                <%= shift_separation.start_h %>  時　~　<%= shift_separation.finish_h %> 時　
+                <%= link_to "編集",edit_master_shift_separation_path(current_master, shift_separation)%>
+                <%= link_to "削除",master_shift_separation_path(current_master,shift_separation) ,
+                {method: :delete, data: { confirm: 'この時間帯を削除して間違いありませんか？'}, class:"delete"} %>
+              </li>
+          <% end %>   
+      </ul>
+  </section>
+</div>        

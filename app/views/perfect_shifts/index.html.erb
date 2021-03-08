@@ -1,0 +1,64 @@
+<div class="wrapper">
+        <div class="shift_onoff">
+            <% if logged_in? %>
+            <%if current_master.shift_onoff == false %>
+                        <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
+                    <% else %>
+                        <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
+                    <% end %>
+            <% end %> 
+        </div>
+        <% if logged_in_staff? || logged_in?%>  
+            <div class = "create_plan">
+                <% if logged_in? %>
+                    <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
+                <% end %> 
+            </div>
+        <% if !logged_in? && logged_in_staff? %>
+          <div class="gap-root"></div>
+        <% end %>
+
+        <div class="training">
+            <p>トレーニング中</p>
+        </div>
+        <div class="normal">
+            <p>通常</p>
+        </div>
+        <div class="all-calendar">
+            <div id="calendar"></div>
+        </div>
+
+        <div id="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="response-modal" tabindex="0" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="error" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="response-modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% else %>
+        <%= render 'static_pages/how_to_use' %>
+    <% end %>   
+</div>    
+
+<%= javascript_pack_tag 'perfect_shifts/calendar' %>
+<%= javascript_pack_tag 'shared/index' %>

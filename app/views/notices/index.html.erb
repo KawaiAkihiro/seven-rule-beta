@@ -1,0 +1,32 @@
+<div class="wrapper">  
+    <div class="notices">
+        <h1>通知</h1>
+    </div>    
+
+    <% if @notices.count != 0 %>
+            <% @notices.each do |notice| %>
+                <div class="one-part">
+                    <div class="create_time">
+                        <%=  time_ago_in_words(notice.created_at) + "前"%>  
+                    </div>
+                    <% if notice.mode == "instead"%>
+                        <h3>交代申請 #<%= notice.id %></h3>
+                        <p>対象日時：<%= current_master.individual_shifts.find(notice.shift_id).fulltime %></p>
+                        <p>変更前：<%= current_master.individual_shifts.find(notice.shift_id).staff.staff_name %>
+                        　→ 　変更後：<%= current_master.staffs.find(notice.staff_id).staff_name %>
+                    <% elsif notice.mode == "delete" %>
+                        <h3>削除申請 #<%= notice.id %></h3>
+                        <p>対象日時：<%= current_master.individual_shifts.find(notice.shift_id).fulltime %></p>
+                        <p>対象者：<%= current_master.staffs.find(notice.staff_id).staff_name %>  
+                        　理由：<%= notice.comment %></p>
+                    <% end %> 
+                    <div class="action">
+                        <%= link_to "承認する", notice_path(notice), method: :patch, class:"btn btn-primary" %>
+                        <%= link_to "承認しない", notice_path(notice), method: :delete, class:"btn btn-danger" %>
+                    </div>
+                </div>      
+            <% end %>  
+    <% else %>
+        <h1>通知はありません</h1>
+    <% end %>
+</div>    

@@ -1,0 +1,7 @@
+<h1><%= @event.staff.staff_name %> <%= @event.time %></h1>
+
+<div class="row">
+    <%= form_with(model: @event, url: reborn_deletable_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+        <%= f.submit "元に戻す", class: "btn btn-primary" %>
+    <% end %>
+</div>    

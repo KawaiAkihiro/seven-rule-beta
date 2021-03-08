@@ -1,0 +1,38 @@
+<p>店長</p>
+<h1>
+    <%= current_master.user_name %> さん
+</h1>
+<li><%= link_to "ユーザー情報を変更する", edit_master_path(current_master) %> </li>
+<li><%= link_to "従業員登録", new_staff_path %> </li>
+<li><%= link_to "従業員一覧", staffs_path %></li>
+<li><%= link_to "シフト時間割を追加する", new_master_shift_separation_path(current_master)%></li>
+<li><%= link_to "シフト時間割一覧", master_shift_separations_path(current_master) %> </li>
+<li><%= link_to "スタッフとしてログインする", login_master_path(current_master) %></li>
+<% if current_master.shift_onoff == false %>
+  <li><%= link_to "シフトを調整する", temporary_shifts_path %></li>
+<% end %>
+<li>
+    <div class="notice">
+        <%= link_to "通知", notices_path%>
+        <div class="number">
+            <span><%= current_master.notices.count %></span>
+        </div>
+    <div>
+</li> <br><br><br>
+<li>
+    <%= link_to "ログアウト", logout_path, {:method=> :post, class:"logout"} %>
+</li>  
+<div class="line"></div>
+<li>
+    <div class="form-group">
+        <p>urlを従業員に共有しましょう</p>
+        <input class="border border-info rounded text-secondary form-control " id="CopyTarget" 
+            type="text" value="http://localhost:3000/masters/<%= current_master.id%>/login" readonly>
+        <div class="copy">
+            <button type="button" class="btn btn-info " id="copy" data-toggle="tooltip" data-placement="top" title="コピーする">
+                <i class="fas fa-clipboard"></i>
+            </button>
+            <p>←こちらをクリック</p>
+        </div>
+    </div>
+</li>   

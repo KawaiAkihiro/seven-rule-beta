@@ -1,0 +1,65 @@
+<div class="wrapper">
+  <div class="open_title">
+    <h1>シフト提出中</h1>
+  </div>
+  <div class ="submit">
+    <%= link_to "終了する", finish_individual_shifts_path, method: :post, class:"btn btn-primary", data: { confirm: '終了してよろしいですか？(追加登録は可能です)' } %>
+  </div>
+  <% if current_staff.training_mode == true %>
+    <div id="navi_open" class="navi">
+      <label class="toggle" for="navi-open"><i class="fas fa-angle-double-right" aria-hidden="true"></i></label>
+      <input id="navi-open" type="checkbox">
+      <div id="navi">
+        <nav>
+          <ul>
+            <li>
+              <div class="title">
+                <p>シフトの時間割</p>
+                <label class="toggle" for="navi-close"><i class="fas fa-times"></i></label>
+                <input id="navi-close" type="checkbox">
+              </div>
+              <% @shift_separation.each do |shift|%>
+                <li>
+                  <%= shift.name %>
+                  <%= shift.start_time.strftime("%H:%M")%>~<%= shift.finish_time.strftime("%H:%M") %>
+                </li>
+              <% end %>
+          </ul> 
+        </nav>
+      </div>   
+    </div>  
+  <% end %>
+           
+  <div id="calendar"></div>
+
+  <div id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+<div id="response-modal" tabindex="0" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="error" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="response-modal-body">
+        </div>
+      </div>
+    </div>
+</div>
+
+<%= javascript_pack_tag 'individual_shifts/calendar' %>
+<%= javascript_pack_tag 'shared/index' %>

@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <h2>仮消去一覧(ここに表示されたシフトは確定時に全て削除されます)</h2>
+    <%= link_to "シフト調整ページに戻る", temporary_shifts_path, class:"btn btn-primary" %>
+    <div id="calendar"></div>
+    <%= link_to "シフト調整ページに戻る", temporary_shifts_path, class:"btn btn-primary" %>
+        
+
+    <div id="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>  
+
+<div id="response-modal" tabindex="0" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="error" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="response-modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= javascript_pack_tag 'deletable_shifts/calendar' %>
+<%= javascript_pack_tag 'shared/index' %>

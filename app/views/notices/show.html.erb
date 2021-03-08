@@ -1,0 +1,10 @@
+<p><%= @shift.start.strftime("%F  %H:%M") %> - <%= @shift.finish.strftime("%H:%M") %> に関して</p><br>
+<% if @notice.mode == "instead" %>
+    <p><%= @old_staff.staff_name%>さんが<%= @new_staff.staff_name%>さんと交代を申請しています。</p><br>
+<% elsif @notice.mode == "delete" %>
+    <p><%= @old_staff.staff_name %>さんがシフト削除を申請しています。</p><br>
+    <p>削除理由：<%= @notice.comment %></p><br>
+<% end %>
+
+<%= link_to "承認する", notice_path(@notice), method: :patch, class:"btn btn-primary" %>
+<%= link_to "承認しない", notice_path(@notice), method: :delete, class:"btn btn-danger" %>

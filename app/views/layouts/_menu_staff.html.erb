@@ -1,0 +1,15 @@
+<p>従業員</p>  
+<h1>
+    <%= current_staff.staff_name %> さん
+</h1>
+<li><%= link_to "ユーザー情報を変更する", edit_staff_path(current_staff)%></li>
+<% if current_staff.master.shift_onoff == true %>
+    <li><%= link_to "シフトを提出する",individual_shifts_path %></li>
+<% end %>  
+<li><%= link_to "シフトを確認する", comfirmed_shifts_path %></li>
+<% unless logged_in? && Rails.env.development? %>
+  <li><%= link_to "店長ログイン", login_path %></li>
+<% end %>
+
+<li><%= link_to "ログアウト", logout_master_path(current_staff), {:method=> :delete, class:"logout"} %></li>
+

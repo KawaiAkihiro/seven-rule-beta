@@ -1,0 +1,23 @@
+<%= form_with(model:@staff, local: true) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label      :staff_name, "氏名" %>
+        <%= f.text_field :staff_name, class: 'form-control' %>
+
+        <%= f.label        :staff_number, "従業員番号" %>
+        <%= f.number_field :staff_number, class: 'form-control' %>
+        
+        <% #店長側の編集ではパスワードの入力フォームを無くしたい。 %>
+        <%= f.label          :password, "パスワード" %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label          :password_confirmation, "パスワード(確認用)" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %> 
+
+        <% if logged_in? %>
+            <%= f.label :training_mode, class: "checkbox inline" do %>
+                <%= f.check_box :training_mode %>
+                <span>トレーニング</span>
+            <% end %>
+        <% end %> 
+       <%= f.submit "登録", {class: "btn btn-primary", data: { confirm: 'お間違いありませんか？' } }%>
+<% end %> 

@@ -1,0 +1,34 @@
+<%= form_with(model: @master, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :store_name, "店名" %>
+  <%= f.text_field :store_name, class: 'form-control' %>
+
+  <%= f.label :user_name, "氏名" %>
+  <%= f.text_field :user_name, class: 'form-control' %>
+
+  <%= f.label :email, "メールアドレス" %>
+  <%= f.email_field :email, class: 'form-control' %>
+
+  <% if controller.action_name == "edit" %>
+    <br>
+    <%= f.label :onoff_email, class: "checkbox inline" do %>
+      <%= f.check_box :onoff_email %>
+      <span>メールで通知を知らせる</span>
+    <% end %>
+    <br>
+  <% end %>
+
+  <% if controller.action_name == "new" %>
+    <%= f.label :staff_number, "従業員番号" %>
+    <%= f.number_field :staff_number, class: 'form-control' %>
+  <% end %>  
+
+  <%= f.label :password,"パスワード" %>
+  <%= f.password_field :password, class: 'form-control' %>
+
+  <%= f.label :password_confirmation,"パスワード(もう一度)" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

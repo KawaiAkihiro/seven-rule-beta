@@ -1,0 +1,5 @@
+<div class="row">
+      <%= form_with(model: @event, url: fill_in_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
+         <%= f.submit "シフトに入る",   class: "btn btn-primary js-event-create-btn" %>
+      <% end %>
+</div>        

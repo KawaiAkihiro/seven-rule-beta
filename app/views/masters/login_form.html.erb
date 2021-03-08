@@ -1,0 +1,18 @@
+<div class="wrapper">  
+  <h1>従業員ログイン</h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(url: login_master_path(@master), scope: :staffs_session, local: true) do |f| %>
+
+        <%= f.label        :staff_number, "従業員番号" %>
+        <%= f.number_field :staff_number, class: 'form-control' %>
+
+        <%= f.label          :password, "パスワード" %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.submit "従業員ログイン", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>   
+</div>

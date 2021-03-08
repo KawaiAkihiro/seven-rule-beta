@@ -1,0 +1,57 @@
+<div class="wrapper">
+ <h2>シフト調整中(確定後は変更ができません。注意して調整してください)</h2>
+  <div class="confirm">
+    <%= link_to "確定する", perfect_temporary_shifts_path, method: :patch, class:"btn btn-primary",
+    data: { confirm: 'これで確定して間違いありませんか?' } %>
+  </div> 
+  <div class="button"> 
+    <%= link_to "仮削除一覧", deletable_shifts_path , class:"btn btn-primary"%>
+    <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
+    <button type="button" name="name" class="shift btn btn-primary">空きシフトを追加する</button>
+  </div>  
+
+  <div class="training">
+      <p>トレーニング中</p>
+  </div>
+  <div class="normal">
+      <p>通常</p>
+  </div>
+
+
+  <div class="all-calendar">
+      <div id="calendar"></div>
+  </div>
+
+  <%= link_to "仮削除一覧", deletable_shifts_path , class:"btn btn-primary"%><br>
+
+  <div id="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="response-modal" tabindex="0" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="error" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="response-modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'temporary_shifts/calendar' %>
+<%= javascript_pack_tag 'shared/index' %>

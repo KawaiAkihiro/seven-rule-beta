@@ -1,506 +1,619 @@
-@import 'bootstrap/scss/bootstrap';
-
-html{
-    height: 100%;
-}
+// @import 'bootstrap/scss/bootstrap';
+// @import '@fortawesome/fontawesome-free/scss/fontawesome';
+// html{
+//     height: 100%;
+// }
   
-body{
-height: 100%;
-margin: 0;
-}
-
-//---header---//
-
-.navbar{
-background-color :green;
-height: auto;
-}
-
-#help{
-color: white;
-font-size: 25px;
-font-weight: bold;
-text-decoration: none;
-}
-
-
-#logo{
-font-size: 50px;
-font-weight: bold;
-color:#fff;
-text-decoration: none;
-margin-left: -60px;
-}
-li{
-    margin-right: 20px;
-}
-
-.nav-btn{
-.signup{
-    margin-right: 20px;
-}
-margin-bottom: 30px;
-.login{
-    margin-right: -100px;
-}
-}
-
-//--url共有ゾーン--//
-
-.form-group{
-padding-top: 10px;
-}
-
-#CopyTarget{
-font-size: 15px
-}
-
-#copy{
-margin-top:10px
-}
-
-.form-group{
-p{
-    color:white;
-
-}
-}
-
-.copy{
-display: inline-flex;
-p{
-    padding-top:30px;
-    padding-left: 20px;
-}
-}
-
-.store_info, .title{
-display: inline-flex;
-h1{
-    margin-top: 5px;
-    padding-left: 40px;
-}
-p{
-    margin-top: 25px;
-    padding-right: 40px;
-}
-}
-
-//---main_contents---//
-
-#container{
-.wrapper{
-    margin: 0;
-    padding: 0 40px 40px;
-    // height: 100vh; /* 全画面表示 */
-    #static_page{
-    padding-top: 100px;
-    text-align:center;
-    span{
-        font-weight: bold;
-    }
-    h1{
-        font-size: 50px;
-        padding-bottom: 20px;
-    }
-    }
-}
-}
-
-//---error---//
-
-#error_explanation {
-color: red;
-ul {
-    color: red;
-    margin: 0 0 30px 0;
-}
-}
-
-.field_with_errors {
-/*@extend .has-error;*/
-.form-control {
-    color: lightcoral;
-}
-}
-
-.alert{
-    padding: 0 40px;
-    text-align: center;
-}
-
-//--form--//
-
-.checkbox {
-margin-bottom: 20px;
-span {
-    margin-left: 20px;
-    font-weight: normal;
-}
-}
-
-#session_remember_me {
-width: auto;
-margin-left: 0;
-}
-
-#staff_training_mode{
-width: auto;
-margin-left: 0;
-}
-
-#staffs_session_remember_me{
-width: auto;
-margin-left: 0;
-}
-
-#master_onoff_email{
-width: auto;
-margin-left: 0;
-}
-
-.form-inline{
-padding-top: 20px;
-.form-control{
-    margin-right: 10px;
-    }
-}
-
-.control-label{
-padding-right: 10px;
-}
-
-.form-control{
-margin-bottom: 10px;
-}
-
-//--shift_onoff button--//
-.shift_onoff, .confirm{
-text-align: right;
-margin-bottom:-60px;
-}
-
-//-- fullcalendar--//
-.fc-toolbar h2 {
-padding-left: 100px;
-}
-
-.event_holiday{
--ms-user-select: none;
--moz-user-select: -moz-none;
--khtml-user-select: none;
--webkit-user-select: none;
-user-select: none;
-}
-
-.fc-time{
-margin: 10px 0 ;
-}
-
-// 平日
-.fc-day-mon, .fc-day-tue,
-.fc-day-wed, .fc-day-thu, .fc-day-fri{
-.fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
-    color: black;
-}
-}
-
-// 土曜日
-.fc-day-sat {
-.fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
-    color: blue;
-    z-index: 3;
-}
-}
-
-// 日曜日
-.fc-day-sun{
-.fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
-    color: red;
-    z-index: 3;
-}
-}
-
-td.fc-day-sat {
-background-color: #eaf4ff;
-
-}
-
-td.fc-day-sun {
-background-color: #ffeaea;
-}
-
-.horizon{
-writing-mode: horizontal-tb;
-text-align: center;
-:hover{
-    cursor : pointer;
-}
-}
-
-.vertical{
-writing-mode: vertical-lr;
-text-align: center;
-:hover{
-    cursor : pointer;
-}
-}
-
-#calendar{
-font-size: 25px;
-}
-
-.fc-daygrid-event{
-.fc-event-title{
-    color: black;
-    font-size: 25px;
-    display: block;
-}
-}
-
-.fc{
-    .fc-bg-event{
-        .fc-event-title{
-        text-align: left;
-        }
-    }
-
-}
-
-
-.fc-timegrid-slot-label-frame{
-    padding: 10px 0;
-}
-
-.fc-daygrid-day-number{
-color:black
-}
-
-.fc-timegrid-col{
-:hover{
-    cursor : pointer;
-}
-}
-
-.fc-event-title{
-font-size: 17.5px;
-}
-
-.fc-timegrid-event-harness{
-a.fc-timegrid-event{
-margin: 0;
-}
-}
-
-
-.all-calendar{
-margin-top: -80px;
-}
-
-.button{
-padding-bottom: 20px;
-width: 100%;
-}
-
-//--- modal---//
-
-@mixin modal($z:2) {
-z-index: $z;
-display: none;
-height: 100vmax;
-position: fixed;
-top: 0;
-width: 1000px;
-top: 0;
-left: 0;
-.modal-content{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    padding: 0 20px;
-}
-}
-
-#modal{
-@include modal($z:2);
-}
-
-#response-modal{
-@include  modal($z:3);
-.response-modal-body{
-    padding:60px
-}
-}
-
-
-
-//---sidebar---//
-
-//通知数
-.notice{
-display: flex;
-align-items: center;
-position:absolute;
-.number{
-    height:50px;
-    width:50px;
-    border-radius:50%;
-    line-height:50px;
-    text-align:center;
-    background:pink;
-    font-size:24px;
-    margin-left:20px;
-}
-}
-
-ul {
-margin: 0;
-padding-left: 0;
-}
-
-li {
-list-style: none;
-}
-
-a {
-text-decoration: none;
-color: #fff;
-}
-
-@mixin sidebar($top:0, $width:350px){
-position: fixed;
-z-index: 10;
-top: $top;
-width: $width; /* メニューのwidth */
-transition: left .5s, right .5s; /* アニメーション */
-padding: 20px;
-}
-
-#menu{
-@include sidebar($top:0, $width:350px);
-right: -370px; /* メニューのwidth + padding */
-height: 100%;
-background-color: rgba(86, 86, 86, 1);
-overflow-y: auto;
-li{
-    font-size: 20px;
-    margin: 15px;
-
-}
-a{
-    color: white;
-    &:hover{
-    text-decoration: none;
-    border-bottom: 1px solid white;
-    padding-bottom: 5px;
-    }
-}
-h1{
-    color:hotpink;
-    font-size: 30px;
-    padding-top: 15px;
-}
-.logout{
-    color:hotpink;
-}
-p{
-    color: white;
-}
-}
-
-#navi{
-@include sidebar($top:95px, $width:290px);
-left: -290px; /* メニューのwidth + padding */
-height: auto;
-background-color: rgb(219, 210, 210);
-overflow-y: auto;
-}
-
-.navi{
-margin-top:-30px;
-li{
-    padding-bottom: 20px;
-    font-size: 20px;
-}
-.fa-angle-double-right{
-    color: rgb(77, 62, 62)
-}
-}
-
-.toggle {
-font-size: 50px;
-cursor: pointer;
-
-}
-
-#open, #navi-open{
-display: none;
-}
-
-#close, #navi-close{
-display: none;
-}
-
-#menu_open, #navi-open{
-margin-right: -30px;
-}
-
-
-
-.number{
-color:black;
-}
-
-
-
-.wrapper{
-h1,h2{
-    padding-top: 30px;
-    
-}
-
-}
-
-
-
-.line{
-border: 1px #ff0000 solid;
-}
-
-.help{
-font-size: 30px;
-}
-
-//--root-urlの微調整--//
-.gap-root{
-    padding:40px
-}
-
-.create_plan{
-    padding-bottom: 40px;
-}
-
-@mixin box($color:black) {
-    width:120px;
-    background-color: #ffffff;
-    border: solid 2px $color;
-    margin-bottom: 10px;
-    height: 30px;
-    text-align: center;
-}
-
-.training{
-    @include box($color:red);
-}
-
-.normal{
-    @include box($color:black);
-}
-
-.open_title{
-    h1{
-        margin-bottom: -100px;
-    }
-}
+// body{
+//     height: 100%;
+//     margin: 0;
+// }
+
+// //---header---//
+
+// .navbar{
+//     background-color :green;
+//     height: auto;
+// }
+
+// #help{
+//     color: white;
+//     font-size: 25px;
+//     font-weight: bold;
+//     text-decoration: none;
+// }
+
+
+// #logo{
+//     font-size: 50px;
+//     font-weight: bold;
+//     color:#fff;
+//     text-decoration: none;
+//     margin-left: -60px;
+// }
+// li{
+//     margin-right: 20px;
+// }
+
+// .nav-btn{
+//     .signup{
+//         margin-right: 20px;
+//     }
+//     margin-bottom: 30px;
+//     .login{
+//         margin-right: -100px;
+//     }
+// }
+
+// //--url共有ゾーン--//
+
+// .form-group{
+//     padding-top: 10px;
+// }
+
+// #CopyTarget{
+//     font-size: 15px
+// }
+
+// #copy{
+//     margin-top:10px
+// }
+
+// .form-group{
+// p{
+//     color:white;
+
+// }
+// }
+
+// .copy{
+//     display: inline-flex;
+//     p{
+//         padding-top:30px;
+//         padding-left: 20px;
+//     }
+// }
+
+// .store_info, .title{
+//     display: inline-flex;
+//     h1{
+//         margin-top: 5px;
+//         padding-left: 40px;
+//     }
+//     p{
+//         margin-top: 25px;
+//         padding-right: 40px;
+//     }
+// }
+
+// //---main_contents---//
+
+// #container{
+//     .wrapper{
+//         margin: 0;
+//         padding: 0 40px 40px;
+//         // height: 100vh; /* 全画面表示 */
+//         #static_page{
+//             padding-top: 100px;
+//             text-align:center;
+//             span{
+//                 font-weight: bold;
+//             }
+//             h1{
+//                 font-size: 50px;
+//                 padding-bottom: 20px;
+//             }
+//         }
+//     }
+// }
+
+// //---error---//
+
+// #error_explanation {
+//     color: red;
+//     ul {
+//         color: red;
+//         margin: 0 0 30px 0;
+//     }
+// }
+
+// .field_with_errors {
+//     /*@extend .has-error;*/
+//     .form-control {
+//         color: lightcoral;
+//     }
+// }
+
+// .alert{
+//     padding: 0 40px;
+//     text-align: center;
+// }
+
+// //--form--//
+
+// .checkbox {
+//     margin-bottom: 20px;
+//     span {
+//         margin-left: 20px;
+//         font-weight: normal;
+//     }
+// }
+
+// #session_remember_me {
+//     width: auto;
+//     margin-left: 0;
+// }
+
+// #staff_training_mode{
+//     width: auto;
+//     margin-left: 0;
+// }
+
+// #staffs_session_remember_me{
+//     width: auto;
+//     margin-left: 0;
+// }
+
+// #master_onoff_email{
+//     width: auto;
+//     margin-left: 0;
+// }
+
+// .form-inline{
+//     padding-top: 20px;
+//     .form-control{
+//         margin-right: 10px;
+//         }
+// }
+
+// .control-label{
+//     padding-right: 10px;
+// }
+
+// .form-control{
+//     margin-bottom: 10px;
+// }
+
+// //--shift_onoff button--//
+// .shift_onoff, .confirm{
+//     text-align: right;
+//     margin-bottom:-60px;
+// }
+
+// //-- fullcalendar--//
+// .fc-toolbar h2 {
+//     padding-left: 100px;
+// }
+
+// .event_holiday{
+//     -ms-user-select: none;
+//     -moz-user-select: -moz-none;
+//     -khtml-user-select: none;
+//     -webkit-user-select: none;
+//     user-select: none;
+// }
+
+// .fc-time{
+//     margin: 10px 0 ;
+// }
+
+// // 平日
+// .fc-day-mon, .fc-day-tue,
+// .fc-day-wed, .fc-day-thu, .fc-day-fri{
+//     .fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
+//         color: black;
+//     }
+// }
+
+// // 土曜日
+// .fc-day-sat {
+//     .fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
+//         color: blue;
+//         z-index: 3;
+//     }
+// }
+
+// // 日曜日
+// .fc-day-sun{
+//     .fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
+//         color: red;
+//         z-index: 3;
+//     }
+// }
+
+// td.fc-day-sat {
+//     background-color: #eaf4ff;
+// }
+
+// td.fc-day-sun {
+//     background-color: #ffeaea;
+// }
+
+// .horizon{
+//     writing-mode: horizontal-tb;
+//     text-align: center;
+//     :hover{
+//         cursor : pointer;
+//     }
+// }
+
+// .vertical{
+//     writing-mode: vertical-lr;
+//     text-align: center;
+//     :hover{
+//         cursor : pointer;
+//     }
+// }
+
+// #calendar{
+//     font-size: 25px;
+// }
+
+// .fc-daygrid-event{
+//     .fc-event-title{
+//         color: black;
+//         font-size: 25px;
+//         display: block;
+//     }
+// }
+
+// .fc{
+//     .fc-bg-event{
+//         .fc-event-title{
+//         text-align: left;
+//         }
+//     }
+
+// }
+
+
+// .fc-timegrid-slot-label-frame{
+//     padding: 10px 0;
+// }
+
+// .fc-daygrid-day-number{
+//     color:black
+// }
+
+// .fc-timegrid-col{
+//     :hover{
+//         cursor : pointer;
+//     }
+// }
+
+// .fc-event-title{
+//     font-size: 17.5px;
+// }
+
+// .fc-timegrid-event-harness{
+//     a.fc-timegrid-event{
+//     margin: 0;
+//     }
+// }
+
+
+// .all-calendar{
+//     margin-top: -80px;
+// }
+
+// .button{
+//     padding-bottom: 20px;
+//     width: 100%;
+// }
+
+// //--- modal---//
+
+// @mixin modal($z:2) {
+//     z-index: $z;
+//     display: none;
+//     height: 100vmax;
+//     position: fixed;
+//     top: 0;
+//     width: 1000px;
+//     top: 0;
+//     left: 0;
+//     .modal-content{
+//         position: fixed;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%);
+//         width: auto;
+//         padding: 0 20px;
+//     }
+// }
+
+// #modal{
+//     @include modal($z:2);
+// }
+
+// #response-modal{
+//     @include  modal($z:3);
+//     .response-modal-body{
+//         padding:60px
+//     }
+// }
+
+
+
+// //---sidebar---//
+
+// //通知数
+// .notice{
+//     display: flex;
+//     align-items: center;
+//     position:absolute;
+//     .number{
+//         height:50px;
+//         width:50px;
+//         border-radius:50%;
+//         line-height:50px;
+//         text-align:center;
+//         background:pink;
+//         font-size:24px;
+//         margin-left:20px;
+//     }
+// }
+
+// ul {
+//     margin: 0;
+//     padding-left: 0;
+// }
+
+// li {
+//     list-style: none;
+// }
+
+// a {
+//     text-decoration: none;
+//     color: #fff;
+// }
+
+// @mixin sidebar($top:0, $width:350px){
+//     position: fixed;
+//     z-index: 10;
+//     top: $top;
+//     width: $width; /* メニューのwidth */
+//     transition: left .5s, right .5s; /* アニメーション */
+//     padding: 20px;
+// }
+
+// #menu{
+//     @include sidebar($top:0, $width:350px);
+//     right: -370px; /* メニューのwidth + padding */
+//     height: 100%;
+//     background-color: rgba(86, 86, 86, 1);
+//     overflow-y: auto;
+//     li{
+//         font-size: 20px;
+//         margin: 15px;
+
+//     }
+//     a{
+//         color: white;
+//         &:hover{
+//         text-decoration: none;
+//         border-bottom: 1px solid white;
+//         padding-bottom: 5px;
+//         }
+//     }
+//     h1{
+//         color:hotpink;
+//         font-size: 30px;
+//         padding-top: 15px;
+//     }
+//     .logout{
+//         color:hotpink;
+//     }
+//     p{
+//         color: white;
+//     }
+// }
+
+// #navi{
+//     @include sidebar($top:95px, $width:290px);
+//     left: -290px; /* メニューのwidth + padding */
+//     height: auto;
+//     background-color: rgb(219, 210, 210);
+//     overflow-y: auto;
+// }
+
+// .navi{
+//     margin-top:-30px;
+//     li{
+//         padding-bottom: 20px;
+//         font-size: 20px;
+//     }
+//     .fa-angle-double-right{
+//         color: rgb(77, 62, 62)
+//     }
+// }
+
+// .toggle {
+//     font-size: 50px;
+//     cursor: pointer;
+// }
+
+// #open, #navi-open{
+//     display: none;
+// }
+
+// #close, #navi-close{
+//     display: none;
+// }
+
+// #menu_open, #navi-open{
+//     margin-right: -30px;
+// }
+
+
+
+// .number{
+//     color:black;
+// }
+
+
+
+// .wrapper{
+//     h1,h2{
+//         padding-top: 30px; 
+//     }
+// }
+
+
+
+// .line{
+//     border: 1px #ff0000 solid;
+// }
+
+// .help{
+//     font-size: 30px;
+// }
+
+// //--root-urlの微調整--//
+// .gap-root{
+//     padding:40px
+// }
+
+// .create_plan{
+//     padding-bottom: 40px;
+// }
+
+// @mixin box($color:black) {
+//     width:120px;
+//     background-color: #ffffff;
+//     border: solid 2px $color;
+//     margin-bottom: 10px;
+//     height: 30px;
+//     text-align: center;
+// }
+
+// .training{
+//     @include box($color:red);
+// }
+
+// .normal{
+//     @include box($color:black);
+// }
+
+// .open_title{
+//     h1{
+//         margin-bottom: -100px;
+//     }
+// }
+
+// //余白作り
+// .gap{
+//     padding:50px
+// }
+
+// //deletable-shifts
+// .wrapper{
+//     a{
+//         margin-bottom: 20px;
+//     }
+// }
+
+// #calendar{
+//     z-index: 1;
+// }
+
+// //確定ボタン
+// .submit{
+//     padding: 20px 0;
+//     text-align: right;
+// }
+
+// //master
+// @mixin box_sizing {
+//     -moz-box-sizing:    border-box;
+//     -webkit-box-sizing: border-box;
+//     box-sizing:         border-box;
+// }
+
+// input, textarea, select, .uneditable-input {
+//     border: 1px solid #bbb;
+//     width: 100%;
+//     margin-bottom: 15px;
+//     @include box_sizing;
+// }
+  
+// input {
+//     height: auto !important;
+//   }  
+
+// .btn{
+//     margin-top: 30px
+// } 
+
+// .cp_hr01 {
+// 	border-width: 1px 0 0 0;
+// 	border-style: solid;
+// 	border-color: #43a047;
+// }
+
+// .notices{
+//     h1{
+//         border-bottom: 1px solid black;
+//     }    
+// }
+
+// //各通知のレイアウト
+// .one-part{
+//     padding: 10px 0 ;
+//     border-bottom: 1px solid black;
+//     h3{
+//         padding-bottom: 10px;
+//     }
+//     .create_time{
+//         padding-top: 20px;
+//         padding-right: 20px;
+//         text-align: right;
+//         font-size: 20px;
+//     }
+//     .action{
+//         margin-top:-25px;
+//         text-align: right;
+//     }
+// }
+
+// //perfect-shifts
+// .fc-event-time{
+//     display : none;
+// }
+
+// //staffs
+// .info{
+//     h1{
+//         padding-bottom: 30px;
+//     }
+//     li{
+//         font-size: x-large;
+//         padding-bottom: 20px;
+//         border-bottom: 2px solid #000000;
+//         padding-top: 20px;
+        
+//     }
+// }
+// //ボタン配置
+// .edit,.delete{
+// padding-left: 30px;
+// }
+
+// //temporary_shifts
+// .button{
+//     margin-top: -30px;
+//     .reload, .shift, .plan{
+//     margin-right: 20px;
+//     margin-bottom: 20px;
+//     } 
+//     a{
+//         margin-right: 20px;
+//         padding-top: -10px;
+//     }
+
+// }
+
+// .submit{
+//     padding: 20px 0;
+//     text-align: right;
+// }

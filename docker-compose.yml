@@ -3,25 +3,22 @@ services:
   app:
     build:
       context: .
-    # env_file:
-    #   - ./environments/db.env
-    command: bundle exec puma -C config/puma.rb -e production
+    env_file:
+      - ./environments/db.env
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log
-    networks:
-      - webapp-network
-
-  #   depends_on:
-  #     - db
-  # db:
-  #   image: mysql:5.7
-  #   env_file:
-  #     - ./environments/db.env
-  #   volumes:
-  #     - db-data:/var/lib/mysql
+    depends_on:
+      - db
+  db:
+    image: mysql:5.7
+    env_file:
+      - ./environments/db.env
+    volumes:
+      - db-data:/var/lib/mysql
 
 
   web:
@@ -34,17 +31,10 @@ services:
       - 80:80
     depends_on:
       - app
-    networks:
-    - webapp-network
-
 volumes:
   public-data:
   tmp-data:
   log-data:
-  # db-data:
-
-networks:
-  webapp-network:
-    external: true
+  db-data:
 
 

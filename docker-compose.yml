@@ -12,8 +12,8 @@ services:
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     networks: 
       - webapp-network
   # db:

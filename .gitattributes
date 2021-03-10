@@ -10,3 +10,4 @@ yarn.lock linguist-generated
 vendor/* linguist-vendored
 
 docker-compose.yml merge=ours
+nginx.conf merge=ours

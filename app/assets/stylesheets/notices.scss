@@ -1,27 +1,3 @@
 // Place all the styles related to the notices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.notices{
-    h1{
-        border-bottom: 1px solid black;
-    }    
-}
-
-//各通知のレイアウト
-.one-part{
-    padding: 10px 0 ;
-    border-bottom: 1px solid black;
-    h3{
-        padding-bottom: 10px;
-    }
-    .create_time{
-        padding-top: 20px;
-        padding-right: 20px;
-        text-align: right;
-        font-size: 20px;
-    }
-    .action{
-        margin-top:-25px;
-        text-align: right;
-    }
-}

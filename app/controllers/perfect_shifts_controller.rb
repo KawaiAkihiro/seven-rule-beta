@@ -1,16 +1,12 @@
 class PerfectShiftsController < ApplicationController
-    def index
+      def index
         #このページで全てのアクションを起こす
         if logged_in? && logged_in_staff?
             @events = current_master.individual_shifts.where(Temporary: true)
-            @shift_separation = current_master.shift_separations.all
-        elsif logged_in_staff? && !logged_in?
-            @master = current_staff.master
-            @events = @master.individual_shifts.where(Temporary: true)
-            @shift_separation = @master.shift_separations.all
+        elsif logged_in_staff? && !logged_in? 
+            @events = current_staff.master.individual_shifts.where(Temporary: true)
         elsif logged_in? && !logged_in_staff?
             @events = current_master.individual_shifts.where(Temporary: true)
-            @shift_separation = current_master.shift_separations.all
         end
       end
     

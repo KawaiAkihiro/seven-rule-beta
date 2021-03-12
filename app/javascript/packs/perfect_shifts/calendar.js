@@ -1,10 +1,10 @@
 import { Calendar, whenTransitionDone } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import weekGridPlugin from '@fullcalendar/timegrid'
+//import dayGridPlugin from '@fullcalendar/daygrid'
 import googleCalendarApi from '@fullcalendar/google-calendar'
 
 document.addEventListener('turbolinks:load', function() {
-
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new Calendar(calendarEl, {
@@ -18,27 +18,23 @@ document.addEventListener('turbolinks:load', function() {
               color:"#FF8C00"
             }
         ],
-        slotDuration: "01:00:00" ,
         locale: 'ja',
         timeZone: 'Asia/Tokyo',
         scrollTime: '07:00:00',
-        dayCellContent: function(e) {
-            e.dayNumberText = e.dayNumberText.replace('時', '');
-
-        },
-        expandRows: true,
-        stickyHeaderDates: true,
-        headerToolbar: {
-            left: '',
-            center: 'title',
-            right: 'today prev,next' 
-        },
+        slotDuration: "01:00:00" ,
         firstDay: 1,
+        headerToolbar: {
+            start: '',
+            center: 'title',
+            end: 'today prev,next' 
+        },
         buttonText: {
             today: '今日'
         }, 
         allDayText: '営業 催事',
         height: "auto",
+
+
         dateClick: function(info){
             const year  = info.date.getFullYear();
             const month = (info.date.getMonth() + 1);
@@ -64,13 +60,8 @@ document.addEventListener('turbolinks:load', function() {
                 });
             }
         },        
-        eventClassNames: function(arg){
-            if(arg.event.allDay){
-                return [ 'horizon' ]
-            }else{
-                return [ 'vertical' ]
-            }
-        },
+
+
         eventClick: function(info){
             var id = info.event.id
             if(info.el.style.backgroundColor == "yellow"){
@@ -103,8 +94,36 @@ document.addEventListener('turbolinks:load', function() {
                 });
             }
             
+        },
+
+        // eventClick: function(info){
+        //     var id = info.event.id
+        //     $.ajax({
+        //         type: "GET",
+        //         url:  "/perfect_shifts/change",
+        //         data: { shift_id : id },
+        //         datatype: "html",
+        //     }).done(function(res){
+            
+        //         $('.modal-body').html(res)
+        //         $('#modal').fadeIn();
+        //     }).fail(function (result) {
+        //         // 失敗処理
+        //         alert("failed");
+        //     });
+            
+        // },
+
+
+        eventClassNames: function(arg){
+            if(arg.event.allDay){
+                return [ 'horizon' ]
+            }else{
+                return [ 'vertical' ]
+            }
         }
     });
+
     calendar.render();
 
     $(".error").click(function(){
@@ -129,4 +148,3 @@ $(function(){
         });
     });
 });
-

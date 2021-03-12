@@ -18,7 +18,7 @@ class IndividualShift < ApplicationRecord
   def parent
     if self.staff.staff_number == 0
       if self.plan == nil
-        " "
+        "募集枠"
       else
         self.plan
       end

@@ -1,14 +1,12 @@
 class PerfectShiftsController < ApplicationController
-    def index
+      def index
         #このページで全てのアクションを起こす
-        if logged_in?
+        if logged_in? && logged_in_staff?
             @events = current_master.individual_shifts.where(Temporary: true)
-        end
-    
-        if logged_in_staff?
-            @master = current_staff.master
-            @events = @master.individual_shifts.where(Temporary: true)
-            @shift_separation = @master.shift_separations.all
+        elsif logged_in_staff? && !logged_in? 
+            @events = current_staff.master.individual_shifts.where(Temporary: true)
+        elsif logged_in? && !logged_in_staff?
+            @events = current_master.individual_shifts.where(Temporary: true)
         end
       end
     
@@ -28,10 +26,6 @@ class PerfectShiftsController < ApplicationController
         @event.staff = current_master.staffs.find_by(staff_number: 0)
         @event.Temporary = true
         @event.save
-        respond_to do |format|
-          format.html { redirect_to temporary_shifts_path }
-          format.js
-        end
       end
     
       #空きシフトを埋めるmodalを表示

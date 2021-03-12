@@ -9,7 +9,7 @@ document.addEventListener('turbolinks:load', function() {
 
     var calendar = new Calendar(calendarEl, {
         plugins: [ weekGridPlugin, interactionPlugin, googleCalendarApi ],
-        events: '/temporary_shifts.json',
+        events: '/perfect_shifts.json',
         googleCalendarApiKey: 'AIzaSyBJgxvPtAdElMF6qlcqWqIwFludRmesnOI',
         eventSources : [
             {

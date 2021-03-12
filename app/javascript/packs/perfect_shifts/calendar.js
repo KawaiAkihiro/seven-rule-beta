@@ -64,13 +64,6 @@ document.addEventListener('turbolinks:load', function() {
                 });
             }
         },        
-        eventClassNames: function(arg){
-            if(arg.event.allDay){
-                return [ 'horizon' ]
-            }else{
-                return [ 'vertical' ]
-            }
-        },
         eventClick: function(info){
             var id = info.event.id
             if(info.el.style.backgroundColor == "yellow"){
@@ -103,8 +96,16 @@ document.addEventListener('turbolinks:load', function() {
                 });
             }
             
+        },
+        eventClassNames: function(arg){
+            if(arg.event.allDay){
+                return [ 'horizon' ]
+            }else{
+                return [ 'vertical' ]
+            }
         }
     });
+
     calendar.render();
 
     $(".error").click(function(){

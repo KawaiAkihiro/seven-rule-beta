@@ -30,10 +30,6 @@ class PerfectShiftsController < ApplicationController
         @event.staff = current_master.staffs.find_by(staff_number: 0)
         @event.Temporary = true
         @event.save
-        respond_to do |format|
-          format.html { redirect_to temporary_shifts_path }
-          format.js
-        end
       end
     
       #空きシフトを埋めるmodalを表示

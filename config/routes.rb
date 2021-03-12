@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'perfect_shifts#index'
+  root 'static_pages#help'
   get '/help',      to: 'static_pages#help'
   get  '/signup',   to: 'masters#new'
   get '/login',     to: 'sessions#new'

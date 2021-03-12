@@ -1,19 +1,18 @@
 <div class="wrapper">
         <div class="shift_onoff">
             <% if logged_in? %>
-            <%if current_master.shift_onoff == false %>
-                        <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
-                    <% else %>
-                        <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
-                    <% end %>
+                <%if current_master.shift_onoff == false %>
+                    <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
+                <% else %>
+                    <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
+                <% end %>
             <% end %> 
         </div>
-        <% if logged_in_staff? || logged_in?%>  
+        <% if logged_in? %>
             <div class = "create_plan">
-                <% if logged_in? %>
-                    <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
-                <% end %> 
+                <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
             </div>
+        <% end %> 
         <% if !logged_in? && logged_in_staff? %>
           <div class="gap-root"></div>
         <% end %>
@@ -55,10 +54,7 @@
                 </div>
             </div>
         </div>
-        <%= javascript_pack_tag 'perfect_shifts/calendar' %>
-        <%= javascript_pack_tag 'shared/index' %>
-
-    <% else %>
-        <%= render 'static_pages/how_to_use' %>
-    <% end %>   
 </div>    
+
+<%= javascript_pack_tag 'perfect_shifts/calendar' %>
+<%= javascript_pack_tag 'shared/index' %> 

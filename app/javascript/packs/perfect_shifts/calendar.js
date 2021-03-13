@@ -96,25 +96,6 @@ document.addEventListener('turbolinks:load', function() {
             
         },
 
-        // eventClick: function(info){
-        //     var id = info.event.id
-        //     $.ajax({
-        //         type: "GET",
-        //         url:  "/perfect_shifts/change",
-        //         data: { shift_id : id },
-        //         datatype: "html",
-        //     }).done(function(res){
-            
-        //         $('.modal-body').html(res)
-        //         $('#modal').fadeIn();
-        //     }).fail(function (result) {
-        //         // 失敗処理
-        //         alert("failed");
-        //     });
-            
-        // },
-
-
         eventClassNames: function(arg){
             if(arg.event.allDay){
                 return [ 'horizon' ]
@@ -136,6 +117,22 @@ $(function(){
         $.ajax({
             type: 'GET',
             url:  '/perfect_shifts/new_plan',
+        }).done(function (res) {
+            //イベント登録用のhtmlを作成
+            $('.modal-body').html(res);
+        
+            $('#modal').fadeIn();
+            // 成功処理
+        }).fail(function (result) {
+            // 失敗処理
+            alert("failed");
+        });
+    });
+
+    $('button.shift').click(function(){
+        $.ajax({
+            type: 'GET',
+            url:  '/perfect_shifts/new_shift',
         }).done(function (res) {
             //イベント登録用のhtmlを作成
             $('.modal-body').html(res);

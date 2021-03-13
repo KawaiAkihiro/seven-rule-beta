@@ -7,7 +7,7 @@
     <li><%= link_to "シフトを提出する",individual_shifts_path %></li>
 <% end %>  
 <li><%= link_to "シフトを確認する", comfirmed_shifts_path %></li>
-<% unless logged_in? && Rails.env.development? %>
+<% if !logged_in? && Rails.env.development? %>
   <li><%= link_to "店長ログイン", login_path %></li>
 <% end %>
 

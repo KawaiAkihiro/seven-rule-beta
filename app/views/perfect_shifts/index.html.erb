@@ -1,16 +1,17 @@
 <div class="wrapper">
-        <div class="shift_onoff">
-            <% if logged_in? %>
-                    <%if current_master.shift_onoff == false %>
-                        <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
-                    <% else %>
-                        <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
-                    <% end %>
-                    <div class = "create_plan">
-                        <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
-                    </div>
-            <% end %> 
-        </div>  
+        <% if logged_in? %>
+            <div class="shift_onoff">
+                <%if current_master.shift_onoff == false %>
+                    <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
+                <% else %>
+                    <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
+                <% end %>
+            </div>  
+            <div class="button"> 
+                <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
+                <button type="button" name="name" class="shift btn btn-primary">空きシフトを追加する</button>
+            </div> 
+        <% end %> 
         <% if !logged_in? && logged_in_staff? %>
           <div class="gap-root"></div>
         <% end %>

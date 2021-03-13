@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       get :change
       get :new_plan
       post :create_plan
+      get :new_shift
+      post :create_shift
     end
 
     member do

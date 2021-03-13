@@ -29,6 +29,7 @@ document.addEventListener('turbolinks:load', function() {
             center: 'title',
             right: 'today prev,next' 
         },
+        height: "auto",
         dayCellContent: function(e) {
             e.dayNumberText = e.dayNumberText.replace('日', '');
         },

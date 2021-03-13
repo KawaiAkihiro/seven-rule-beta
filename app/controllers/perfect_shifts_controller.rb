@@ -27,6 +27,23 @@ class PerfectShiftsController < ApplicationController
         @event.Temporary = true
         @event.save
       end
+
+      def new_shift
+        @event = current_master.individual_shifts.new
+        @separations = current_master.shift_separations.all
+        #空きシフト追加modal用のhtmlを返す
+        render plain: render_to_string(partial: 'form_new_shift', layout: false, locals: { event: @event, separations:@separations })
+      end
+
+      def create_shift
+        @event = current_master.individual_shifts.new(params_shift)
+        change_finishDate
+        @event.staff = current_master.staffs.find_by(staff_number: 0)
+        @event.Temporary = true
+        unless @event.save
+          render partial: "individual_shifts/error"
+        end
+      end
     
       #空きシフトを埋めるmodalを表示
       def fill
@@ -56,22 +73,21 @@ class PerfectShiftsController < ApplicationController
       def fill_in
         #両方ログイン中
         if logged_in? && logged_in_staff?
-          #従業員を店長に設定
+
           fill_in_master
     
         #従業員のみログイン時
         elsif !logged_in? && logged_in_staff?
-          #ログイン中の従業員が空きシフトを埋める
+
           @master = current_staff.master
           @event = @master.individual_shifts.find(params[:id])
           @event.staff = current_staff
     
         #店長のみログイン時
         elsif logged_in? && !logged_in_staff?  
-          #従業員を店長に設定
+
           fill_in_master
         end
-        
         @event.save
       end
     
@@ -168,6 +184,10 @@ class PerfectShiftsController < ApplicationController
     
         def params_notice
           params.require(:individual_shift).permit(:comment)
+        end
+
+        def params_shift
+          params.require(:individual_shift).permit(:start, :finish)
         end
     
         def params_plan

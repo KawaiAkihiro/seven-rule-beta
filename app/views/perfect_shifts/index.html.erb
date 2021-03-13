@@ -12,6 +12,7 @@
                 <button type="button" name="name" class="shift btn btn-primary">空きシフトを追加する</button>
             </div> 
         <% end %> 
+    <% if logged_in? || logged_in_staff? %>
         <% if !logged_in? && logged_in_staff? %>
           <div class="gap-root"></div>
         <% end %>
@@ -53,7 +54,9 @@
                 </div>
             </div>
         </div>
+        <%= javascript_pack_tag 'perfect_shifts/calendar' %>
+        <%= javascript_pack_tag 'shared/index' %>
+    <% else %>
+        <%= render 'static_pages/how_to_use' %>
+    <% end %>
 </div>    
-
-<%= javascript_pack_tag 'perfect_shifts/calendar' %>
-<%= javascript_pack_tag 'shared/index' %>

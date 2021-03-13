@@ -11,16 +11,7 @@
 <% if current_master.shift_onoff == false %>
   <li><%= link_to "シフトを調整する", temporary_shifts_path %></li>
 <% end %>
-<li>
-    <div class="notice">
-        <%= link_to "通知", notices_path%>
-        <div class="number">
-            <span><%= current_master.notices.count %></span>
-        </div>
-    <div>
-</li> <br><br><br>
-<li>
-    <%= link_to "ログアウト", logout_path, {:method=> :post, class:"logout"} %>
+<li><%= link_to "ログアウト", logout_path, {:method=> :post, class:"logout"} %></li>
 </li>  
 <div class="line"></div>
 <li>

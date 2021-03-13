@@ -336,24 +336,6 @@ td.fc-day-sun {
 
 
 //---sidebar---//
-
-//通知数
-.notice{
-    display: flex;
-    align-items: center;
-    position:absolute;
-    .number{
-        height:50px;
-        width:50px;
-        border-radius:50%;
-        line-height:50px;
-        text-align:center;
-        background:pink;
-        font-size:24px;
-        margin-left:20px;
-    }
-}
-
 ul {
     margin: 0;
     padding-left: 0;
@@ -549,32 +531,6 @@ input {
 	border-style: solid;
 	border-color: #43a047;
 }
-
-.notices{
-    h1{
-        border-bottom: 1px solid black;
-    }    
-}
-
-//各通知のレイアウト
-.one-part{
-    padding: 10px 0 ;
-    border-bottom: 1px solid black;
-    h3{
-        padding-bottom: 10px;
-    }
-    .create_time{
-        padding-top: 20px;
-        padding-right: 20px;
-        text-align: right;
-        font-size: 20px;
-    }
-    .action{
-        margin-top:-25px;
-        text-align: right;
-    }
-}
-
 //perfect-shifts
 .fc-event-time{
     display : none;
@@ -615,4 +571,8 @@ padding-left: 30px;
 .submit{
     padding: 20px 0;
     text-align: right;
+}
+
+.root_delete{
+    margin-left: 10px;
 }

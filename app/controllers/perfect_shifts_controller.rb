@@ -113,14 +113,12 @@ class PerfectShiftsController < ApplicationController
                 if @already_event.present?
                   return_html("alert")
                 else
-                  #モードによってmodalのhtmlを変更する
-                  change_modal('form_instead', 'alert', 'alert')
+                  return_html('form_instead')
                 end
                 
               # 自分の予定の場合
               elsif @event.staff == current_staff
-                #モードによってmodalのhtmlを変更する
-                change_modal('form_delete','already_delete', "already_instead")
+                return_html("alert")
               end
             else
               return_html("alert")
@@ -129,8 +127,6 @@ class PerfectShiftsController < ApplicationController
           #店長のみログイン時
           elsif logged_in? && !logged_in_staff?
             @event = current_master.individual_shifts.find(params[:shift_id])
-            #終日の予定をクリックした時
-    
             masters_action
           end
         rescue => exception
@@ -139,16 +135,11 @@ class PerfectShiftsController < ApplicationController
         
       end
     
-      #交代申請処理
+      #交代処理
       def instead
-        #シフトのモードを変更、通知を作成、メール送信
-        notice("instead")
-      end
-    
-      #削除申請処理
-      def delete
-        #シフトのモードを変更、通知を作成、メール送信
-        notice("delete")
+        @shift  = current_staff.master.individual_shifts.find(params[:id])
+        @shift.staff = current_staff
+        @shift.save
       end
     
       private
@@ -157,13 +148,7 @@ class PerfectShiftsController < ApplicationController
         def fill_form_master
           @event = current_master.individual_shifts.find(params[:shift_id])
           #重複を避ける
-          @master_staff = current_master.staffs.find_by(staff_number: current_master.staff_number)
-          @already_event = @master_staff.individual_shifts.where(start:@event.start)
-          unless @already_event.present?
-            return_html("form_fill")
-          else
-            return_html("alert")
-          end
+          return_html("form_fill")
         end
     
         #空きシフトに店長が入る処理
@@ -181,10 +166,6 @@ class PerfectShiftsController < ApplicationController
             return_html("plan_delete")
           end
         end
-    
-        def params_notice
-          params.require(:individual_shift).permit(:comment)
-        end
 
         def params_shift
           params.require(:individual_shift).permit(:start, :finish)
@@ -192,37 +173,5 @@ class PerfectShiftsController < ApplicationController
     
         def params_plan
           params.require(:individual_shift).permit(:plan, :start)
-        end
-    
-        #シフトのモードを変更、通知を作成、メール送信
-        def notice(mode)
-          @master = current_staff.master
-    
-          @event = @master.individual_shifts.find(params[:id])
-          @event.mode = mode
-          @event.save
-    
-          #通知を作成
-          @notice = @master.notices.new
-          @notice.mode = mode
-          @notice.staff_id = current_staff.id
-          @notice.shift_id = @event.id
-          @notice.save
-    
-          #メール機能がオンなら通知を送信
-          if @master.onoff_email
-          NoticeMailer.send_when_create_notice(@notice).deliver
-          end
-        end
-    
-        #シフトのmodeによって表示するmodalを変更する
-        def change_modal(nil_html,delete,instead)
-          if @event.mode.nil?
-            return_html(nil_html)
-          elsif @event.mode == "delete"
-            return_html(delete)
-          elsif @event.mode == "instead"
-            return_html(instead)
-          end
         end
 end

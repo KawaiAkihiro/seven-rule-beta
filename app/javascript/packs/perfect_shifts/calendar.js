@@ -4,6 +4,9 @@ import weekGridPlugin from '@fullcalendar/timegrid'
 //import dayGridPlugin from '@fullcalendar/daygrid'
 import googleCalendarApi from '@fullcalendar/google-calendar'
 
+import '@fullcalendar/common/main.css'
+import '@fullcalendar/timegrid/main.css'
+
 document.addEventListener('turbolinks:load', function() {
     var calendarEl = document.getElementById('calendar');
 

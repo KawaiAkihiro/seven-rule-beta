@@ -20,19 +20,14 @@ Rails.application.routes.draw do
 
   resources :staffs 
 
-  resources :notices, :only => [:index, :show, :destroy, :update] do
-    # patch :deny, on: :member
-  end
-
-  # get :chnage_form,      to: 'perfect_shifts#change_form'
-  # patch :change,         to: 'perfect_shifts#change'
-
   resources :perfect_shifts, :only => [:index] do
     collection do
       get :fill
       get :change
       get :new_plan
       post :create_plan
+      get :new_shift
+      post :create_shift
     end
 
     member do

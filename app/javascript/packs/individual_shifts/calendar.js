@@ -22,6 +22,7 @@ document.addEventListener('turbolinks:load', function() {
         timeZone: 'Asia/Tokyo',
         firstDay: 1,
         theme: false,
+        height: "auto",
         dayCellContent: function(e) {
             e.dayNumberText = e.dayNumberText.replace('日', '');
 

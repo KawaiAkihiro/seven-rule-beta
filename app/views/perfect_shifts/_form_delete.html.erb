@@ -1,9 +1,0 @@
-<h1><%= @event.time %></h1>
-
-<div class="row">
-      <%= form_with(model: @event, url: delete_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
-         <%= f.label      :comment, "削除理由" %>
-         <%= f.text_area :comment, class: 'form-control' %>
-         <%= f.submit "削除申請",   class: "btn btn-primary js-event-create-btn" , data: { confirm: '本当に削除申請してよろしいですか?' } %>
-      <% end %>
-</div>        

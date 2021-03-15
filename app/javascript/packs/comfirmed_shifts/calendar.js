@@ -29,27 +29,9 @@ document.addEventListener('turbolinks:load', function() {
             center: 'title',
             right: 'today prev,next' 
         },
+        height: "auto",
         dayCellContent: function(e) {
             e.dayNumberText = e.dayNumberText.replace('日', '');
-        },
-        eventClick: function(info){
-            if (info.event.backgroundColor == "white"){
-                var id = info.event.id
-                $.ajax({
-                    type: "GET",
-                    url:  "/perfect_shifts/change",
-                    data: { shift_id : id },
-                    datatype: "html",
-                }).done(function(res){
-                
-                    $('.modal-body').html(res)
-                    $('#modal').fadeIn();
-                }).fail(function (result) {
-                    // 失敗処理
-                    // alert("failed");
-                });
-            }
-            
         },
         eventClassNames: function(arg){
             return [ 'horizon' ]

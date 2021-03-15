@@ -1,0 +1,26 @@
+<h1>空きシフト登録</h1>
+
+<div class="row empty_shifts">
+      <%= form_with model: @event, url: create_shift_perfect_shifts_path, local: false do |f| %>
+         <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-inline text-left">
+         <%= f.label :start,"出勤時刻", {class:'control-label'}%>
+         <%= f.datetime_select :start, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control bootstrap-date mb-3' %>
+        </div>
+         <br>
+        <div class="form-inline text-left"> 
+         <%= f.label :finish,"退勤時刻", {class:'control-label'}%>
+         <%= f.time_select :finish, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
+        </div>
+        <% if @separations.count > 0 %>
+            <% @separations.each do |separation| %>
+                  <li class="pattern btn btn-danger" value="<%= separation.start_h %>,<%= separation.finish_h%>">
+                        <%= separation.name %>
+                  </li> 
+            <% end %>
+        <% end %>    
+         <%= f.submit "登録",   class: "btn btn-primary js-event-create-btn" %>
+      <% end %>
+</div>    
+
+<%= javascript_pack_tag 'individual_shifts/auto_shift' %>

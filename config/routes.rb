@@ -34,6 +34,10 @@ Rails.application.routes.draw do
       patch :fill_in
       patch :instead
       patch :delete
+
+      patch :change_empty
+      patch :change_master
+      
     end
   end
 

@@ -71,19 +71,16 @@ class PerfectShiftsController < ApplicationController
     
       #空きシフトを埋める処理
       def fill_in
-        #両方ログイン中
         if logged_in? && logged_in_staff?
 
           fill_in_master
     
-        #従業員のみログイン時
         elsif !logged_in? && logged_in_staff?
 
           @master = current_staff.master
           @event = @master.individual_shifts.find(params[:id])
           @event.staff = current_staff
     
-        #店長のみログイン時
         elsif logged_in? && !logged_in_staff?  
 
           fill_in_master
@@ -94,14 +91,17 @@ class PerfectShiftsController < ApplicationController
       #シフトの変更のmodalを表示
       def change
         begin
-          #両方ログイン時
           if logged_in? && logged_in_staff?
             @event = current_master.individual_shifts.find(params[:shift_id])
             #終日の予定をクリックした時
     
-            masters_action
+            unless @event.allDay
+              #店長権限でシフトをダイレクトに削除する
+              return_html("form_edit")
+            else
+              return_html("plan_delete")
+            end
     
-          #従業員のみログイン時
           elsif !logged_in? && logged_in_staff?
             @event = current_staff.master.individual_shifts.find(params[:shift_id])
             @already_event = current_staff.individual_shifts.find_by(start: @event.start)
@@ -124,10 +124,14 @@ class PerfectShiftsController < ApplicationController
               return_html("alert")
             end
     
-          #店長のみログイン時
           elsif logged_in? && !logged_in_staff?
             @event = current_master.individual_shifts.find(params[:shift_id])
-            masters_action
+            unless @event.allDay
+              #店長権限でシフトをダイレクトに削除する
+              return_html("form_edit")
+            else
+              return_html("plan_delete")
+            end
           end
         rescue => exception
           #何もしない(祝日イベント対策)
@@ -141,8 +145,20 @@ class PerfectShiftsController < ApplicationController
         @shift.staff = current_staff
         @shift.save
       end
+
+      def change_empty
+        @shift = current_master.individual_shifts.find(params[:id])
+        @shift.staff = current_master.staffs.find_by(staff_number:0)
+        @shift.save
+      end
+
+      def change_master
+        @shift = current_master.individual_shifts.find(params[:id])
+        @shift.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
+        @shift.save
+      end
     
-      private
+    private
     
         #店長ログイン時の空きシフトに入るためのmodal
         def fill_form_master
@@ -155,16 +171,6 @@ class PerfectShiftsController < ApplicationController
         def fill_in_master
           @event = current_master.individual_shifts.find(params[:id])
           @event.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
-        end
-    
-        #変更に関して店長ができることを表示する
-        def masters_action
-          unless @event.allDay
-            #店長権限でシフトをダイレクトに削除する
-            return_html("form_direct_delete")
-          else
-            return_html("plan_delete")
-          end
         end
 
         def params_shift

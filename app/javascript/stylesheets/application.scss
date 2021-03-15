@@ -1,5 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import '@fullcalendar/common/main.css';
+@import '@fullcalendar/timegrid/main.css';
+
 html{
     height: 100%;
 }

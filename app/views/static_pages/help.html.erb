@@ -1,110 +1,157 @@
 <div class="wrapper">
-    <% if logged_in? %>
-        <h1>店長の方</h1>
-
-        <div class="qablock">
-            <p class="question_txt" data-hoge="q6"><span class="qicon">Q</span>シフトの募集開始</p>
-            <div class="show_button closebutton"></div>
-            <div id="toggle_q6" class="answer_txt" style="display:none;">
-                <img src="/assets/root_path_1.png" alt="">
-                <p>①を押すと募集を開始し従業員側で「シフトを提出する」をクリックできるようになる</p>
-                <p>募集を締め切るときはもう一度ボタンをクリックし、「シフトを調整する」に移りましょう</p>
+    <div class="how_to_use">
+        <% if logged_in? %>
+            <h1>店長の方</h1>
+            <div class="qablock">
+                <p class="question_txt" data-hoge="q9"><span class="qicon">Q</span>従業員の追加、編集、削除</p>
+                <div class="show_button closebutton"></div>
+                <div id="toggle_q9" class="answer_txt" style="display:none;">
+                    <h3>追加</h3>
+                    <p>新しい従業員が入ってきたらサイドバーの「従業員登録」から情報を記入して従業員を追加してください</p>
+                    <p>最初のパスワードは全員[0000]となっているので従業員の皆さんに共有しましょう</p>
+                    <h3>編集</h3>
+                    <p>トレーニングモードは編集のページのチェックを外して更新することで解除されます</p>
+                    <h3>削除</h3>
+                    <p>従業員が退職するときは従業員を削除しましょう</p>
+                    <p>従業員が削除されるとシフトも全て削除されます。</p>
+                </div>
             </div>
-        </div>
 
-        <div class="qablock">
-            <p class="question_txt" data-hoge="q7"><span class="qicon">Q</span>シフトの調整方法</p>
-            <div class="show_button closebutton"></div>
-            <div id="toggle_q7" class="answer_txt" style="display:none;">
-                <h3>メイン画面</h3>
-                <img src="/assets/temporary_shifts_2.png" alt="">
-                <h3>仮削除<h3>
-                <img src="/assets/temporary_shifts_1.png" alt="">
-                <h3>仮削除の復元</h3>
-                <img src="/assets/temporary_shifts_5.png" alt="">
-                <h3>空きシフトの追加<h3>
-                <img src="/assets/temporary_shifts_3.png" alt="">
-                <h3>営業・催事の追加<h3>
-                <img src="/assets/temporary_shifts_4.png" alt="">
-
+            <div class="qablock">
+                <p class="question_txt" data-hoge="q10"><span class="qicon">Q</span>シフト時間割の追加、編集、削除</p>
+                <div class="show_button closebutton"></div>
+                <div id="toggle_q10" class="answer_txt" style="display:none;">
+                    <h3>追加</h3>
+                    <p>「シフト時間割を追加」を押し必要な情報を入力しましょう</p>
+                    <p>シフト時間割とは...? : お店ごとに決められている一人が入るシフトの最短時間のことです</p>
+                    <p>例) 早朝勤務 07:00 - 10:00, 夕方勤務 18:00 - 22:00  深夜勤務 22:00 - 07:00</p>
+                    <h3>使用用途</h3>
+                    <p>これは、トレーニングモードの従業員さんがシフトを提出するときの時間のガイドライン</p>
+                    <p>シフト調整中に空きシフトの募集枠を追加する時の自動入力のために使用するので、是非使ってみてください</p>
+                    <h3>編集、削除</h3>
+                    <p>時間割の名前やそもそもの時間を帰る場合は「編集」を押し、時間割を削除する場合は「削除」を押します</p>
+                </div>
             </div>
-        </div>
 
+            <div class="qablock">
+                <p class="question_txt" data-hoge="q6"><span class="qicon">Q</span>シフトの募集開始</p>
+                <div class="show_button closebutton"></div>
+                <div id="toggle_q6" class="answer_txt" style="display:none;">
+                    <img src="/assets/root_path_1.png" alt="">
+                    <p><span>①</span>を押すと募集を開始し従業員側で「シフトを提出する」をクリックできるようになる</p>
+                    <p>募集を締め切るときはもう一度ボタンをクリックし、「シフトを調整する」に移りましょう</p>
+                </div>
+            </div>
+
+            <div class="qablock">
+                <p class="question_txt" data-hoge="q7"><span class="qicon">Q</span>シフトの調整方法</p>
+                <div class="show_button closebutton"></div>
+                <div id="toggle_q7" class="answer_txt" style="display:none;">
+                    <h3>メイン画面</h3>
+                    <img src="/assets/temporary_shifts_2.png" alt="">
+                    <p><span>①</span>：提出されたシフトが集まるところです。(トレーニングモードの従業員の枠は赤なります)</p>
+                    <p>シフトをクリックorタップすることで操作することができます</p>
+                    <p><span>②</span>：仮削除したシフトの一覧を見ることができます。このページに飛んで操作すると仮削除を復元することができます</p>
+                    <p><span>③</span>：終日の予定を追加するときに使うボタンです</p>
+                    <p><span>④</span>：足りないシフトを追加するときに使うボタンです</p>
+                    <p><span>⑤</span>：調整してきたシフトを確定させます。このとき仮削除にしていたシフトは全て削除されます。</p>
+                    <h3>仮削除</h3>
+                    <img src="/assets/temporary_shifts_1.png" alt="">
+                    <h3>仮削除の復元</h3>
+                    <p>まずメイン画面から[仮削除一覧]をクリックしてください</p>
+                    <img src="/assets/temporary_shifts_5.png" alt="">
+                    <h3>空きシフトの追加</h3>
+                    <img src="/assets/temporary_shifts_3.png" alt="">
+                    <h3>営業・催事の追加</h3>
+                    <img src="/assets/temporary_shifts_4.png" alt="">
+
+                </div>
+            </div>
+
+            <div class="qablock">
+                <p class="question_txt" data-hoge="q8"><span class="qicon">Q</span>確定したシフトの変更方法</p>
+                <div class="show_button closebutton"></div>
+                <div id="toggle_q8" class="answer_txt" style="display:none;">
+                    <h3>他の従業員の場合</h3>
+                    <img src="/assets/perfect_shifts_1.png" alt="">
+                    <p><span>①</span>：選択したシフトを募集枠に変更します</p>
+                    <p><span>②</span>：店長が選択したシフトに入ります</p>
+                    <br>
+                    <h3>募集枠の場合</h3>
+                    <img src="/assets/perfect_shifts_2.png" alt="">
+                    <p><span>③</span>：店長が選択したシフトに入ります</p>
+                    <p><span>④</span>：募集枠そのものを削除します</p>
+                    <p></p>
+                </div>
+            </div>
+        <% end %>
+
+        
+        <h1>従業員の方</h1>
         <div class="qablock">
-            <p class="question_txt" data-hoge="q8"><span class="qicon">Q</span>確定したシフトの変更方法</p>
+            <p class="question_txt" data-hoge="q1"><span class="qicon">Q</span>シフトの追加方法</p>
             <div class="show_button closebutton"></div>
-            <div id="toggle_q8" class="answer_txt" style="display:none;">
-                <h3>他の従業員の場合</h3>
-                <img src="/assets/perfect_shifts_1.png" alt="">
-                <p>①：選択したシフトを募集枠に変更します</p>
-                <p>②：店長が選択したシフトに入ります</p>
+            <div id="toggle_q1" class="answer_txt" style="display:none;">
+                <h3>１回目</h3>
+                <img src="/assets/individual_shifts_1.png" alt="">
+                <p><span>②</span>でクリックorタップした日付と同じであることを確認してください</p>
                 <br>
-                <h3>募集枠の場合</h3>
-                <img src="/assets/perfect_shifts_2.png" alt="">
-                <p>③：店長が選択したシフトに入ります</p>
-                <p>④：募集枠そのものを削除します</p>
-                <p></p>
+                <h3>2回目以降</h3>
+                <img src="/assets/individual_shifts_2.png" alt="">
+                <p>2回目以降は同じ時間を入力しなくてもボタン一つクリックすると自動入力してくれます</p>
+                <p>別の時間のパターンで入力したいときは1回目と同様に別の時間を手動で入力すると新しい時間のパターンを作ってくれます</p>
+                
             </div>
         </div>
-    <% end %>
 
-    
-    <h1>従業員の方</h1>
-    <div class="qablock">
-        <p class="question_txt" data-hoge="q1"><span class="qicon">Q</span>シフトの追加方法</p>
-        <div class="show_button closebutton"></div>
-        <div id="toggle_q1" class="answer_txt" style="display:none;">
-            <h3>１回目</h3>
-            <img src="/assets/individual_shifts_1.png" alt="">
-            <p>②でクリックorタップした日付と同じであることを確認してください</p>
-            <br>
-            <h3>2回目以降</h3>
-            <img src="/assets/individual_shifts_2.png" alt="">
-            <p>2回目以降は同じ時間を入力しなくてもボタン一つクリックすると自動入力してくれます</p>
-            <p>新しい時間のパターンで入力したいときは1回目と同じ流れで時間を指定すると新しい時間のパターンを作ってくれます</p>
-            
+        <div class="qablock">
+            <p class="question_txt" data-hoge="q2"><span class="qicon">Q</span>シフトの削除方法</p>
+            <div class="show_button closebutton"></div>
+            <div id="toggle_q2" class="answer_txt" style="display:none;">
+                <img src="/assets/individual_shifts_3.png" alt="">
+                <p>※シフトの募集期間が終了すると削除できなくなるのでご注意ください</p>
+            </div>
         </div>
-    </div>
 
-    <div class="qablock">
-        <p class="question_txt" data-hoge="q2"><span class="qicon">Q</span>シフトの削除方法</p>
-        <div class="show_button closebutton"></div>
-        <div id="toggle_q2" class="answer_txt" style="display:none;">
-            <img src="/assets/individual_shifts_3.png" alt="">
-            <p>※シフトの募集期間が終了すると削除できなくなるのでご注意ください</p>
+        <div class="qablock">
+            <p class="question_txt" data-hoge="q3"><span class="qicon">Q</span>シフトの交代方法</p>
+            <div class="show_button closebutton"></div>
+            <div id="toggle_q3" class="answer_txt" style="display:none;">
+                <h3>空きシフトに入る</h3>
+                <img src="/assets/perfect_shifts_3.png" alt="">
+                <h3>他の従業員とシフトを代る</h3>
+                <img src="/assets/perfect_shifts_4.png" alt="">
+                <p>シフトを変わる場合は後任する方がその交代する人のシフトをクリックして交代してください</p>
+                <h3>※注意</h3>
+                <p>交代した後のシフトはあなたの責任になるので、その後の代わりは自分で見つけましょう</p>
+                <p>どうしても代わりがいなければ店長に連絡してください</p>
+            </div>
         </div>
-    </div>
 
-    <div class="qablock">
-        <p class="question_txt" data-hoge="q3"><span class="qicon">Q</span>シフトの交代方法</p>
-        <div class="show_button closebutton"></div>
-        <div id="toggle_q3" class="answer_txt" style="display:none;">
-            <h3>空きシフトに入る</h3>
-            <img src="/assets/perfect_shifts_3.png" alt="">
-            <h3>他の従業員のシフトを代る</h3>
-            <img src="/assets/perfect_shifts_4.png" alt="">
-            <p>シフトを変わる場合は後任する方がその交代する人のシフトをクリックして交代してください</p>
-            <h3>注意</h3>
-            <p>交代した後のシフトはあなたの責任になるので、その後の代わりは自分で見つけましょう</p>
-            <p>どうしても代わりがいなければ店長に連絡してください</p>
+        <h2>よくある質問</h2>
+        <div class="qablock">
+            <p class="question_txt" data-hoge="q4"><span class="qicon">Q</span>シフト提出のリンクがない！</p>
+            <div class="show_button closebutton"></div>
+            <div id="toggle_q4" class="answer_txt answer_only" style="display:none;">
+                <p>シフト提出期間が終了しています。</p>
+                <p>シフトを確定される前に店長に連絡してください</p>
+            </div>
         </div>
-    </div>
 
-    <h2>よくある質問</h2>
-    <div class="qablock">
-        <p class="question_txt" data-hoge="q4"><span class="qicon">Q</span>シフト提出のリンクがない！</p>
-        <div class="show_button closebutton"></div>
-        <div id="toggle_q4" class="answer_txt" style="display:none;">
-            <p>シフト提出期間が終了しています。</p>
-            <p>シフトを確定される前に店長に連絡してください</p>
+        <div class="qablock">
+            <p class="question_txt" data-hoge="q5"><span class="qicon">Q</span>シフトを間違えて提出してしまったことに募集期限後に気づいた</p>
+            <div class="show_button closebutton"></div>
+            <div id="toggle_q5" class="answer_txt answer_only" style="display:none;">
+                <p>シフトが確定される前に店長に連絡してもう一度募集中にしてもらいましょう</p>
+            </div>
         </div>
-    </div>
 
-    <div class="qablock">
-        <p class="question_txt" data-hoge="q5"><span class="qicon">Q</span>シフトを間違えて提出してしまったことに募集期限後に気づいた</p>
-        <div class="show_button closebutton"></div>
-        <div id="toggle_q5" class="answer_txt" style="display:none;">
-            <p>シフトが確定される前に店長に連絡してもう一度募集中にしてもらいましょう</p>
+        <div class="qablock">
+            <p class="question_txt" data-hoge="q11"><span class="qicon">Q</span>従業員です。パスワードを忘れてしまいました。</p>
+            <div class="show_button closebutton"></div>
+            <div id="toggle_q11" class="answer_txt answer_only" style="display:none;">
+                <p>店長が変更する権利を持っているので、店長に連絡して、パスワードをリセットしてもらいましょう。</p>
+            </div>
         </div>
     </div>
 </div>

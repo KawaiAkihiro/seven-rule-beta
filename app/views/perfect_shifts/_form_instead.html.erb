@@ -1,6 +1,10 @@
-<h1><%= @event.staff.staff_name %> <%= @event.time %></h1>
+<h1><%= @event.staff.staff_name %></h1>
+<h1><%= @event.fulltime %></h1>
+
 <div class="row">
-      <%= form_with(model: @event, url: instead_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
-         <%= f.submit "交代する",   class: "btn btn-primary js-event-create-btn", data: { confirm: '交代したいシフトは合っていますか?' }%>
-      <% end %>
+      <div class="col">
+            <%= form_with(model: @event, url: instead_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
+            <%= f.submit "交代する",   class: "btn btn-primary js-event-create-btn", data: { confirm: '交代したいシフトは合っていますか?' }%>
+            <% end %>
+      </div>
 </div>        

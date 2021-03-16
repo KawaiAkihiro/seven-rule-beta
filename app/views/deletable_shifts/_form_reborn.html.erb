@@ -1,4 +1,5 @@
-<h1><%= @event.staff.staff_name %> <%= @event.time %></h1>
+<h1><%= @event.staff.staff_name %></h1> 
+<h1><%= @event.fulltime %></h1>
 
 <div class="row">
     <%= form_with(model: @event, url: reborn_deletable_shift_path(@event), html: { method: :patch }, local: false) do |f| %>

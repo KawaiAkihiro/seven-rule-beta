@@ -125,8 +125,9 @@ li{
 }
 
 .alert{
-    padding: 0 40px;
+    padding: 20px 0;
     text-align: center;
+    font-size: 20px;
 }
 
 //--form--//
@@ -322,14 +323,28 @@ td.fc-day-sun {
     }
 }
 
+.start{
+    width: 550px
+}
+
+.delete{
+    width: 300px;
+}
+
 #modal{
-    @include modal($z:2);
+    @include modal($z:5);
+    .modal-body{
+        h1{
+            text-align: center;
+        }
+    }  
 }
 
 #response-modal{
-    @include  modal($z:3);
+    @include  modal($z:6);
     .response-modal-body{
-        padding:60px
+        padding:60px;
+        text-align: center;
     }
 }
 
@@ -573,9 +588,6 @@ padding-left: 30px;
     text-align: right;
 }
 
-.root_delete, .change_master{
-    margin-left: 10px;
-}
 
 // help(Q and A)
 .qablock{
@@ -634,6 +646,33 @@ padding-left: 30px;
 
 //screen_shot
 img{
-    width: 600px;
-    padding: 10px 0;
+    width: 800px;
+    padding: 20px 0;
+}
+
+.how_to_use{
+    h1, h2, h3{
+        padding-bottom: 30px;
+    }
+
+    h3{
+        padding-top: 30px;
+        border-bottom: solid 2px black;
+    }
+    p{
+        padding: 15px;
+    }
+    span{
+        font-size: 20px;
+    }
+}
+
+h2.pattern{
+    padding-top: 30px;
+    border-top: solid 2px black;
+}
+
+p.warning{
+    padding-top: 20px;
+    color:#ff0000;
 }

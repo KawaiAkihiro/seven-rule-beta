@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :staffs 
 
+  resources :patterns, :only => [:index, :destroy]
+
   resources :perfect_shifts, :only => [:index] do
     collection do
       get :fill

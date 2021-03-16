@@ -3,16 +3,18 @@
   <h1><%= @event.plan %></h1>
 <% else %>
     <% if @event.staff.staff_number == 0 %>
-        <h1><%= @event.time %></h1>
+        <h1>募集枠</h1> 
+        <h1><%= @event.fulltime %></h1>
     <% else %>
-        <h1><%= @event.staff.staff_name %> <%= @event.time %></h1>
+        <h1><%= @event.staff.staff_name %></h1> 
+        <h1><%= @event.fulltime %></h1>
     <% end %>
 <% end %>
 
 
 <div class="row">
     <%= form_with(model: @event, url: deletable_temporary_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
-        <% if @event.allDay %>
+        <% if @event.allDay || @event.staff.staff_number == 0 %>
          <%= f.submit "消去", class: "btn btn-primary" %>
         <% else %>
          <%= f.submit "消去(仮)", class: "btn btn-primary" %>

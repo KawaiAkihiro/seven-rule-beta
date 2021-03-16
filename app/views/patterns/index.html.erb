@@ -1,0 +1,18 @@
+<div class="wrapper">  
+  <section class="info">   
+    <h1><%= current_staff.staff_name %>さんのシフトパターン一覧</h1>
+        <% if @patterns.count != 0 %>
+            <ul>
+                <% @patterns.each do |pattern| %>
+                    <li> 
+                        <%= pattern.start.hour %>  時　~　<%= pattern.finish.hour %> 時　
+                        <%= link_to "削除",pattern_path(pattern) ,
+                        {method: :delete, data: { confirm: 'この時間帯を削除して間違いありませんか？'}, class:"delete"} %>
+                    </li>
+                <% end %>   
+            </ul>
+        <% else %>
+            <h2 class="pattern">シフト提出のパターンを持っていません</h2>
+        <% end %>
+  </section>
+</div>       

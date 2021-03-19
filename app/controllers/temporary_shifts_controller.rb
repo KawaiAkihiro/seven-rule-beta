@@ -65,6 +65,16 @@ class TemporaryShiftsController < ApplicationController
     end
   end
 
+  def time_cut
+    @event = current_master.individual_shifts.find(params[:id])
+
+    # old_start = @event.start
+    # old_finish = @event.finish
+    unless @event.update(params_shift)
+      render partial: "error"
+    end
+  end
+
   #シフト確定する(仮削除対象を削除)
   def perfect
     @events = current_master.individual_shifts.where(Temporary: false)

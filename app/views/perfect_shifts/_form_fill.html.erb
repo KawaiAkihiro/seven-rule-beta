@@ -1,10 +1,13 @@
+<h1><%= @event.fulltime %></h1>
 <div class="row">
-      <%= form_with(model: @event, url: fill_in_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
-         <%= f.submit "シフトに入る",   class: "btn btn-primary js-event-create-btn" %>
-      <% end %>
-      <% if logged_in? %>
-            <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
-                  <%= f.submit "消去", class: "btn btn-primary root_delete" %>
+      <div class="col">
+            <%= form_with(model: @event, url: fill_in_perfect_shift_path(@event), html: {method: :patch},local: false) do |f| %>
+            <%= f.submit "シフトに入る",   class: "btn btn-primary js-event-create-btn" %>
             <% end %>
-      <% end %>
+            <% if logged_in? %>
+                  <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
+                        <%= f.submit "消去", class: "btn btn-primary" %>
+                  <% end %>
+            <% end %>
+      </div>
 </div>        

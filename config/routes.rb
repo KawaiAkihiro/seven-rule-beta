@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :staffs 
 
+  resources :patterns, :only => [:index, :destroy]
+
   resources :perfect_shifts, :only => [:index] do
     collection do
       get :fill
@@ -34,6 +36,10 @@ Rails.application.routes.draw do
       patch :fill_in
       patch :instead
       patch :delete
+
+      patch :change_empty
+      patch :change_master
+      
     end
   end
 
@@ -49,6 +55,7 @@ Rails.application.routes.draw do
     
     member do
       patch :deletable
+      patch :time_cut
     end
   end
 

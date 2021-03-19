@@ -37,6 +37,10 @@ class IndividualShift < ApplicationRecord
     end
   end
 
+  def date
+    self.start.strftime("%m/%d")
+  end
+
   #トレーニング中の従業員の枠線は赤にする
   def color
     if self.staff.training_mode == true

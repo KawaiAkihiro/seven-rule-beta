@@ -1,0 +1,12 @@
+<h1><%= @event.staff.staff_name %></h1>
+<h1><%= @event.fulltime %></h1>
+<div class="row">
+    <div class="col">
+        <%= form_with(model: @event, url: change_empty_perfect_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <%= f.submit "募集枠に変更する", class: "btn btn-primary" %>
+        <% end %>
+        <%= form_with(model: @event, url: change_master_perfect_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <%= f.submit "店長が入る", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div> 

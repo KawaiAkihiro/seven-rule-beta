@@ -13,11 +13,11 @@
                            <label class="toggle" for="close"><i class="fas fa-times"></i></label>
                            <input id="close" type="checkbox">
                            <% if logged_in? && logged_in_staff?%>
-                              <h1><%= current_master.store_name %></h1>
+                              <h1><%= link_to current_master.store_name, root_path %></h1>
                            <% elsif !logged_in? && logged_in_staff?  %>
-                              <h1><%= current_staff.master.store_name %></h1>
+                              <h1><%= link_to current_staff.master.store_name, root_path %></h1>
                            <% elsif logged_in? && !logged_in_staff? %>
-                              <h1><%= current_master.store_name %></h1>
+                              <h1><%= link_to current_master.store_name, root_path %></h1>
                            <% end %>
                         </div>
                      </li>

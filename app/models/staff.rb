@@ -5,8 +5,8 @@ class Staff < ApplicationRecord
 
   default_scope -> { order(staff_number: :asc) }
   validates :master_id,    presence: true
-  validates :staff_name,   presence: true
-  validates :staff_number, presence: true
+  validates :staff_name,   presence: true, uniqueness: true
+  validates :staff_number, presence: true, uniqueness: true
 
   has_secure_password
   validates :password,   presence: true, length: { minimum: 4}, allow_nil: true

@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     
     member do
       patch :deletable
+      patch :time_cut
     end
   end
 

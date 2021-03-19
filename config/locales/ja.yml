@@ -13,6 +13,10 @@ ja:
           start_time: 開始時刻
           finish_time: 終了時刻  
 
+        staff:
+          staff_number: 従業員番号
+          staff_name: 氏名
+
   datetime:
     distance_in_words:
       half_a_minute: "30秒前後"

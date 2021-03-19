@@ -7,18 +7,36 @@
         <h1><%= @event.fulltime %></h1>
     <% else %>
         <h1><%= @event.staff.staff_name %></h1> 
-        <h1><%= @event.fulltime %></h1>
     <% end %>
 <% end %>
 
-
+<% if @event.staff.staff_number != 0 %>
+    <div class="row empty_shifts">
+        <%= form_with model: @event, url: time_cut_temporary_shift_path(@event), local: false do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="form-inline text-left start">
+                <%= f.label :start,"出勤時刻", {class:'control-label'}%>
+                <%= f.datetime_select :start,  {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control bootstrap-date mb-3' %>
+            </div>
+            <br>
+            <div class="form-inline text-left"> 
+                <%= f.label :finish,"退勤時刻", {class:'control-label'}%>
+                <%= f.time_select :finish, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
+            </div>
+            <div class="col">
+                <%= f.submit "変更",   class: "btn btn-primary js-event-create-btn" %>
+            </div>
+        <% end %>   
+    </div>      
+<% end %>
 <div class="row">
-    <%= form_with(model: @event, url: deletable_temporary_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
-        <% if @event.allDay || @event.staff.staff_number == 0 %>
-         <%= f.submit "消去", class: "btn btn-primary" %>
-        <% else %>
-         <%= f.submit "消去(仮)", class: "btn btn-primary" %>
+    <div class="col">
+        <%= form_with(model: @event, url: deletable_temporary_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <% if @event.allDay || @event.staff.staff_number == 0 %>
+                <%= f.submit "消去", class: "btn btn-primary" %>
+            <% else %>
+                <%= f.submit "消去(仮)", class: "btn btn-primary" %>
+            <% end %> 
         <% end %>
-       
-    <% end %>
-</div>    
+    </div>
+</div>

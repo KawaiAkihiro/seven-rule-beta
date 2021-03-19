@@ -35,6 +35,7 @@ class PerfectShiftsController < ApplicationController
         render plain: render_to_string(partial: 'form_new_shift', layout: false, locals: { event: @event, separations:@separations })
       end
 
+      #空きシフトを追加処理
       def create_shift
         @event = current_master.individual_shifts.new(params_shift)
         change_finishDate
@@ -118,7 +119,7 @@ class PerfectShiftsController < ApplicationController
                 
               # 自分の予定の場合
               elsif @event.staff == current_staff
-                return_html("alert")
+                return_html("shift_info")
               end
             else
               return_html("alert")

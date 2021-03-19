@@ -7,4 +7,4 @@ json.array!(@events) do |event|
     json.textColor "black"
     json.backgroundColor "white"
     json.borderColor "black"
-  end
+end

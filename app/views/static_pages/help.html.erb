@@ -1,3 +1,4 @@
+<% provide(:title, 'ヘルプ') %>
 <div class="wrapper">
     <div class="how_to_use">
         <% if logged_in? %>
@@ -7,15 +8,18 @@
                 <div class="show_button closebutton"></div>
                 <div id="toggle_q9" class="answer_txt" style="display:none;">
                     <h3>追加</h3>
+                    <img src="/assets/staff_1.png" alt="">
                     <p>新しい従業員が入ってきたらサイドバーの「従業員登録」から情報を記入して従業員を追加してください</p>
                     <p>最初のパスワードは全員統一して従業員の皆さんに初期パスワードを共有しましょう</p>
-                    <h3>編集</h3>
-                    <p>トレーニングモードは編集のページのチェックを外して更新することで解除されます</p>
-                    <h4>パスワードのリセット</h4>
-                    <p>従業員の方がパスワードを忘れたときは「従業員一覧」の編集からパスワードを変更して従業員に伝えてください。</p>
-                    <h3>削除</h3>
-                    <p>従業員が退職するときは従業員を削除しましょう</p>
+                    <h3>編集、削除</h3>
+                    <img src="/assets/staff_2.png" alt="">
+                    <p><span>①</span>：従業員情報を変更します</p>
+                    <p><span>トレーニングモードの解除</span>、<span>パスワードのリセット</span>もここで行います</p>
+                    <p><span>②</span>：従業員情報を削除します。</p>
                     <p>従業員が削除されるとシフトも全て削除されます。</p>
+                    <h4>パスワードのリセット</h4>
+                    <img src="/assets/password_1.png" alt="">
+                    <p>この赤枠でパスワードを入れ直すことでリセットが可能です。リセット後は従業員にパスワードを教えてあげましょう</p>
                 </div>
             </div>
 
@@ -24,7 +28,7 @@
                 <div class="show_button closebutton"></div>
                 <div id="toggle_q10" class="answer_txt" style="display:none;">
                     <h3>追加</h3>
-                    <p>「シフト時間割を追加」を押し必要な情報を入力しましょう</p>
+                    <img src="/assets/shift_1.png" alt="">
                     <p><span>シフト時間割とは...?</span>  お店ごとに決められている一人が入るシフトの最短時間のことです</p>
                     <p>例) 早朝勤務 07:00 - 10:00, 夕方勤務 18:00 - 22:00  深夜勤務 22:00 - 07:00</p>
                     <h3>使用用途</h3>
@@ -40,8 +44,10 @@
                 <div class="show_button closebutton"></div>
                 <div id="toggle_q6" class="answer_txt" style="display:none;">
                     <img src="/assets/root_path_1.png" alt="">
-                    <p><span>①</span>を押すと募集を開始し従業員側で「シフトを提出する」をクリックできるようになる</p>
+                    <p><span>①</span>を押すと募集を開始し従業員側で「シフトを提出する」をクリックできるようになります</p>
+                    <p>従業員は提出がオンになっている期間だけシフトの提出ができます。締め切ると提出することができなくなります。</p>
                     <p>募集を締め切るときはもう一度ボタンをクリックし、「シフトを調整する」に移りましょう</p>
+                    <p>サイドメニューの「シフトを調整する」はシフトを募集していない期間にしか表示することができません</p>
                 </div>
             </div>
 
@@ -59,7 +65,7 @@
                     <p><span>⑤</span>：調整してきたシフトを確定させます。このとき仮削除にしていたシフトは全て削除されます。</p>
                     <h3>仮削除</h3>
                     <img src="/assets/temporary_shifts_1.png" alt="">
-                    <p><span>①</span>：シフトの長さを調整することができます</p>
+                    <p><span>①</span>：シフトの長さを調整(部分採用)することができます</p>
                     <p> 例) before: 7:00 ~ 14:00 => after: 7:00 ~ 10:00</p>
                     <p><span>②</span>：そのシフトそのものを仮削除状態に変更します。仮削除状態のものを確定時に完全削除します</p>
                     <h3>仮削除の復元</h3>

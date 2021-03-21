@@ -10,6 +10,8 @@
 <li><%= link_to "スタッフとしてログインする", login_master_path(current_master) %></li>
 <% if current_master.shift_onoff == false %>
   <li><%= link_to "シフトを調整する", temporary_shifts_path %></li>
+<% else %>
+  <li><%= link_to "未提出者一覧", no_submits_staffs_path %></li>
 <% end %>
 <li><%= link_to "ログアウト", logout_path, {:method=> :post, class:"logout"} %></li>
 </li>  

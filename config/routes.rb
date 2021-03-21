@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :staffs 
+  resources :staffs do
+    get :no_submits, on: :collection
+  end
 
   resources :patterns, :only => [:index, :destroy]
 

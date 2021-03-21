@@ -1,5 +1,6 @@
 class IndividualShiftsController < ApplicationController
     before_action :logged_in_staff, except: [:destroy]
+    before_action :shift_onoff, except: [:destroy]
 
     require 'date'
 

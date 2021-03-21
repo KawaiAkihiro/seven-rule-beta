@@ -1,0 +1,13 @@
+<% provide(:title, 'シフト未提出者一覧') %>
+<div class="wrapper">  
+   <section class="info">
+      <h1>シフト未提出者 一覧</h1>
+      <ul>
+         <% @no_staffs.each do |staff| %>
+            <li>
+               <%= staff.staff_name %>
+            </li>
+         <% end %>　 
+      <ul>
+   </section> 
+</div>

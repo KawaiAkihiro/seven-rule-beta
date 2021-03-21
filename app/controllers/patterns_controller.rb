@@ -1,4 +1,5 @@
 class PatternsController < ApplicationController
+    before_action :logged_in_staff
     def index
         @patterns = current_staff.patterns.all
     end

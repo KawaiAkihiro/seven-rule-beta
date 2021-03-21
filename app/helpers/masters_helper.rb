@@ -43,6 +43,13 @@ module MastersHelper
     end
   end
 
+  def shift_onoff
+    unless current_staff.master.shift_onoff
+      flash[:danger] = "提出期間はすでに終了しています"
+      redirect_to root_path
+    end
+  end
+
   def corrent_staff
     unless logged_in? 
         unless logged_in_staff?

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
       patch :change_empty
       patch :change_master
+      patch :change_me
       
     end
   end

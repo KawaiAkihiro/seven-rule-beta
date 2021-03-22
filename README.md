@@ -29,7 +29,7 @@ http://www.seven-rule.net/
 
 # AWS 構成図
 
-
+![aws](https://user-images.githubusercontent.com/72666840/112064948-274ba400-8ba7-11eb-9000-7c236cf5f573.png)
 
 
 # テストデータ

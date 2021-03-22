@@ -3,7 +3,7 @@ class StaffsController < ApplicationController
     before_action :corrent_staff,   only: [:show, :edit, :update]
 
     def index
-        @staffs = current_master.staffs.where.not(staff_number:0).where.not(staff_number:current_master.staff_number)
+        @staffs = current_master.staffs.where.not(staff_number:0).where.not(staff_number:current_master.staff_number).page(params[:page]).per(6)
     end
 
     def new

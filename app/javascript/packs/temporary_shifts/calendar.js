@@ -6,6 +6,7 @@ import googleCalendarApi from '@fullcalendar/google-calendar'
 
 document.addEventListener('turbolinks:load', function() {
     var calendarEl = document.getElementById('calendar');
+    var width = window.innerWidth;
 
     var calendar = new Calendar(calendarEl, {
         plugins: [ weekGridPlugin, interactionPlugin, googleCalendarApi ],
@@ -20,7 +21,8 @@ document.addEventListener('turbolinks:load', function() {
         ],
         locale: 'ja',
         timeZone: 'Asia/Tokyo',
-        scrollTime: '07:00:00',
+        slotMinTime: '07:00:00',
+        slotMaxTime: '31:00;00',
         slotDuration: "01:00:00" ,
         firstDay: 1,
         headerToolbar: {

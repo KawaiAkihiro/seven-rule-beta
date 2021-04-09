@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :staffs do
     get :no_submits, on: :collection
+    get :already_submits, on: :collection
   end
 
   resources :patterns, :only => [:index, :destroy]

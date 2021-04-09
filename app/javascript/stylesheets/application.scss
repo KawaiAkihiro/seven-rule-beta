@@ -91,7 +91,7 @@ li{
 #container{
     .wrapper{
         margin: 0;
-        padding: 0 40px 40px;
+        padding: 0 40px 50px;
         // height: 100vh; /* 全画面表示 */
         #static_page{
             padding-top: 100px;
@@ -178,10 +178,14 @@ li{
 //--shift_onoff button--//
 .shift_onoff, .confirm{
     text-align: right;
-    margin-bottom:-60px;
+    margin-bottom:-90px;
 }
 
 //-- fullcalendar--//
+#calnendar{
+    padding-top: -10px;
+}
+
 .fc-toolbar h2 {
     padding-left: 100px;
 }
@@ -246,9 +250,49 @@ td.fc-day-sun {
     }
 }
 
-#calendar{
-    font-size: 25px;
+@media screen and (min-width: 980px) {
+    .fc-timegrid-slot-label-cushion{
+        font-size: 15px;
+    }
+
+    .fc-timegrid-slots{
+        tr{
+            font-size: 18px;
+            padding: 0;
+        }
+    } 
+    
+    .fc-timegrid-slot-label-frame{
+        padding: 0;
+        font-size: 15px;
+    }
+
+    .fc-event-title{
+        font-size: 12px;
+    }
 }
+
+@media screen and  (max-width: 980px) {
+    .fc-timegrid-slot-label-cushion{
+        font-size: 20px;
+    }
+
+    .fc-timegrid-slots{
+        tr{
+            font-size: 30px;
+            padding: 0;
+        }
+    } 
+    
+    .fc-timegrid-slot-label-frame{
+        padding: 0;
+        font-size: 30px;
+    }
+
+    .fc-event-title{
+        font-size: 20px;
+    }
+}　
 
 .fc-daygrid-event{
     .fc-event-title{
@@ -264,12 +308,6 @@ td.fc-day-sun {
         text-align: left;
         }
     }
-
-}
-
-
-.fc-timegrid-slot-label-frame{
-    padding: 10px 0;
 }
 
 .fc-daygrid-day-number{
@@ -282,15 +320,19 @@ td.fc-day-sun {
     }
 }
 
-.fc-event-title{
-    font-size: 17.5px;
+.fc-daygrid-event-harness{
+    a.fc-daygrid-event{
+        margin: 0;
+    }
 }
 
 .fc-timegrid-event-harness{
     a.fc-timegrid-event{
-    margin: 0;
+        margin:0;
     }
 }
+
+
 
 
 .all-calendar{
@@ -298,6 +340,7 @@ td.fc-day-sun {
 }
 
 .button{
+    padding-top: -50px;
     padding-bottom: 20px;
     width: 100%;
 }
@@ -571,7 +614,7 @@ padding-left: 30px;
 
 //temporary_shifts
 .button{
-    margin-top: -30px;
+    margin-top: -50px;
     .reload, .shift, .plan{
     margin-right: 20px;
     margin-bottom: 20px;

@@ -1,2 +1,10 @@
 <h1><%= @event.staff.staff_name %></h1>
 <h1><%= @event.fulltime %></h1>
+<div class="row">
+    <div class="col">
+        <%= form_with(model: @event, url: change_me_perfect_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <%#= f.collection_select :保存先のカラム名, テーブル（モデル）名.all, :実際にDBに保存させるカラム名, :選択肢に用いるカラム名, include_blank: "選択して下さい" %>
+            <%= f.submit "変更", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>  

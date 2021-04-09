@@ -23,7 +23,8 @@ document.addEventListener('turbolinks:load', function() {
         ],
         locale: 'ja',
         timeZone: 'Asia/Tokyo',
-        scrollTime: '07:00:00',
+        slotMinTime: '07:00:00',
+        slotMaxTime: '31:00;00',
         slotDuration: "01:00:00" ,
         firstDay: 1,
         headerToolbar: {

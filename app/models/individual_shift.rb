@@ -70,4 +70,13 @@ class IndividualShift < ApplicationRecord
       "white"
     end
   end
+
+  def temp_color
+    same_time = self.master.individual_shifts.where(start:self.start)
+    if same_time.count < 2
+      "red"
+    else
+      "black"
+    end
+  end
 end

@@ -42,6 +42,8 @@ group :development do
   gem 'rubocop-rails'
 end
 
+gem 'kaminari'
+
 gem 'dotenv-rails'
 
 # Test enviroment: Rspec

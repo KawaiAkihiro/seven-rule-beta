@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :staffs do
     get :no_submits, on: :collection
+    get :already_submits, on: :collection
   end
 
   resources :patterns, :only => [:index, :destroy]
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
 
       patch :change_empty
       patch :change_master
+      patch :change_me
       
     end
   end

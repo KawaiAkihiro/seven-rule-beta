@@ -255,6 +255,15 @@ td.fc-day-sun {
     }
 }
 
+.fc-daygrid-event-harness{
+    a.fc-daygrid-event{
+        margin: 0;
+    }
+    .fc-event-title{
+        height: 20px;
+    }
+}
+
 @media screen and (min-width: 980px) {
     .fc-timegrid-slot-label-cushion{
         font-size: 15px;
@@ -274,6 +283,12 @@ td.fc-day-sun {
 
     .fc-event-title{
         font-size: 12px;
+    }
+    .fc-daygrid-event-harness{
+        .fc-event-title{
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
     }
 }
 
@@ -296,6 +311,12 @@ td.fc-day-sun {
 
     .fc-event-title{
         font-size: 20px;
+    }
+    .fc-daygrid-event-harness{
+        .fc-event-title{
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
     }
 }　
 
@@ -325,17 +346,6 @@ td.fc-day-sun {
     }
 }
 
-.fc-daygrid-event-harness{
-    a.fc-daygrid-event{
-        margin: 0;
-    }
-    .fc-event-title{
-        height: 20px;
-    }
-    .fc-event-title{
-        font-size: 12px;
-    }
-}
 
 .fc-timegrid-event-harness{
     a.fc-timegrid-event{

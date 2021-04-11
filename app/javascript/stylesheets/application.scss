@@ -257,6 +257,11 @@ td.fc-day-sun {
     .fc-event-title{
         height: 20px;
     }
+    .fc-event-title{
+        font-size: 13px;
+        
+    }
+    
 }
 
 @media screen and (min-width: 980px) {
@@ -279,12 +284,6 @@ td.fc-day-sun {
     .fc-event-title{
         font-size: 12px;
     }
-    .fc-daygrid-event-harness{
-        .fc-event-title{
-            font-size: 15px;
-            margin-bottom: 2px;
-        }
-    }
 }
 
 @media screen and  (max-width: 980px) {
@@ -306,12 +305,6 @@ td.fc-day-sun {
 
     .fc-event-title{
         font-size: 20px;
-    }
-    .fc-daygrid-event-harness{
-        .fc-event-title{
-            font-size: 15px;
-            margin-bottom: 2px;
-        }
     }
 }　
 

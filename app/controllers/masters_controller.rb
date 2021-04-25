@@ -25,10 +25,17 @@ class MastersController < ApplicationController
   end
 
   #シフトを募集開始or終了する処理
-  def shift_onoff
+  def shift_onoff   #募集開始
     if !current_master.shift_onoff
       current_master.shift_onoff = true
-    else
+    else            #募集終了
+      
+      @staffs = current_master.staffs.where(abandon: true)
+      @staffs.each do |staff|
+        staff.abandon = false
+        staff.save
+      end
+
       current_master.shift_onoff = false
     end
     current_master.save

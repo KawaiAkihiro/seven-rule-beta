@@ -28,21 +28,26 @@ class IndividualShiftsController < ApplicationController
         @pattern = current_staff.patterns.new(params_event) 
         @already_pattern = current_staff.patterns.where(start: @pattern.start).where(finish: @pattern.finish)
         
-            #すでに同じシフトを登録していないか判定
-            unless @already_event.present?
-                
-                if @event.save  
-                    #過去に同じ時間帯に登録したことがなければ新しい登録パターンを追加
-                    unless @already_pattern.present?
-                        @pattern.save
-                    end
-                else
-                    render partial: "error"
+        #すでに同じシフトを登録していないか判定
+        unless @already_event.present?
+            
+            if @event.save  
+                #過去に同じ時間帯に登録したことがなければ新しい登録パターンを追加
+                unless @already_pattern.present?
+                    @pattern.save
+                end
+                #シフト放棄状態の人が追加した時は放棄を無くす
+                if current_staff.abandon 
+                    current_staff.abandon = false
+                    current_staff.save
                 end
             else
-                #被りエラーを表示する
-                render partial: "duplicate"   
-            end 
+                render partial: "error"
+            end
+        else
+            #被りエラーを表示する
+            render partial: "duplicate"   
+        end 
     end 
 
 
@@ -68,6 +73,18 @@ class IndividualShiftsController < ApplicationController
     def finish
         flash[:success] = "登録を終了しました！"
         redirect_to root_path
+    end
+
+    def abandon
+        if current_staff.individual_shifts.count == 0
+            current_staff.abandon = true
+            current_staff.save
+            flash[:success] = "登録を終了しました！"
+            redirect_to root_path
+        else
+            flash.now[:danger] = "シフトが登録されています"
+            render "index"
+        end
     end
 
 

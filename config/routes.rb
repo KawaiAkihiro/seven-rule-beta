@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       post :create_plan
       get :new_shift
       post :create_shift
+      get :change_shift
     end
 
     member do
@@ -42,8 +43,12 @@ Rails.application.routes.draw do
 
       patch :change_empty
       patch :change_master
-      patch :change_me
+      # patch :change_me
+
+      patch :admit
+      patch :reject
       
+      patch :direct_change
     end
   end
 
@@ -74,10 +79,18 @@ Rails.application.routes.draw do
       patch  :perfect
       get  :remove
       post :finish
+      post :abandon
     end
 
     member do
       patch :deletable, to: 'individual_shifts#deletable'
+    end
+  end
+
+  resources :notices, :only => [:index] do
+    member do
+      patch :admit
+      patch :reject
     end
   end
 end

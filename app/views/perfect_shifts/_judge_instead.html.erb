@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col text-center">
+        <h1><%= @event.fulltime %></h1>
+        <h1><%= @event.staff.staff_name %>が</h1>
+        <h1><%= current_master.staffs.find(@event.next_staff_id).staff_name %>と</h1>
+        <h1>交代しようとしています</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center">
+        <%= form_with(model: @event, url: admit_perfect_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <%= f.submit "承認", class: "btn btn-primary" %>
+        <% end %>
+        <%= form_with(model: @event, url: reject_perfect_shift_path(@event), html: { method: :patch }, local: false) do |f| %>
+            <%= f.submit "拒否", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

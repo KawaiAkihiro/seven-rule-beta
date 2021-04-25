@@ -10,8 +10,8 @@ services:
     volumes:
       - .:/webapp
       - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
-      - log-data:/webapp/log
+      - tmp-data:/webapp/tmp/sockets
+      - log-data:/var/log/nginx
     depends_on:
       - db
     # networks: 
@@ -29,7 +29,7 @@ services:
       context: containers/nginx
     volumes:
       - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
+      - tmp-data:/webapp/tmp/sockets
     ports:
       - 80:80
     depends_on:

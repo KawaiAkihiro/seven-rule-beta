@@ -43,12 +43,12 @@ Rails.application.routes.draw do
 
       patch :change_empty
       patch :change_master
-      # patch :change_me
 
       patch :admit
       patch :reject
       
       patch :direct_change
+      patch :own_instead
     end
   end
 

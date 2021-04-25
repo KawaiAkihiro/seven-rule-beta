@@ -203,6 +203,7 @@ class PerfectShiftsController < ApplicationController
         @shift.save
       end
 
+      #従業員がイエローラインに入る・他者のシフトに入る申請のmodalを返す
       def change_shift
         if logged_in? && logged_in_staff?
           @event = current_master.individual_shifts.find(params[:shift_id])
@@ -215,12 +216,11 @@ class PerfectShiftsController < ApplicationController
         end
       end
 
+      #店長が店舗で書きかえられた変更を反映する
       def direct_change
         @event = current_master.individual_shifts.find(params[:id])
         name = params.require(:individual_shift).permit(:staff_name)
         new_staff = current_master.staffs.find_by(staff_name: name.values)
-
-        logger.debug(@already_event)
 
         if new_staff.present?
           @already_event = current_master.individual_shifts.find_by(start: @event.start, staff_id: new_staff.id)
@@ -233,6 +233,28 @@ class PerfectShiftsController < ApplicationController
         else
           render partial: "perfect_shifts/error"
         end
+      end
+
+      #自分のシフトと変わってくれる人を申請する
+      def own_instead
+        @event = current_staff.master.individual_shifts.find(params[:id])
+        name = params.require(:individual_shift).permit(:staff_name)
+        new_staff = current_staff.master.staffs.find_by(staff_name: name.values)
+
+        if new_staff.present?
+          @already_event = current_staff.master.individual_shifts.find_by(start: @event.start, staff_id: new_staff.id)
+          unless @already_event.present?
+            @event.next_staff_id = new_staff.id
+            @event.mode = "instead"
+            @event.save
+            
+          else
+            render partial: "individual_shifts/duplicate"
+          end
+        else
+          render partial: "perfect_shifts/error"
+        end
+
       end
     
     private

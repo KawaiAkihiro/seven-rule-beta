@@ -179,28 +179,28 @@ class PerfectShiftsController < ApplicationController
     
       #交代申請処理
       def instead
-        @shift  = current_staff.master.individual_shifts.find(params[:id])
-        @shift.next_staff_id = current_staff.id
-        @shift.mode = "instead"
-        @shift.save
+        @event  = current_staff.master.individual_shifts.find(params[:id])
+        @event.next_staff_id = current_staff.id
+        @event.mode = "instead"
+        @event.save
       end
 
       #空きシフトに変更
       def change_empty
-        @shift = current_master.individual_shifts.find(params[:id])
-        @shift.staff = current_master.staffs.find_by(staff_number:0)
-        @shift.mode = nil
-        @shift.next_staff_id = nil
-        @shift.save
+        @event = current_master.individual_shifts.find(params[:id])
+        @event.staff = current_master.staffs.find_by(staff_number:0)
+        @event.mode = nil
+        @event.next_staff_id = nil
+        @event.save
       end
 
       #店長がシフトインする
       def change_master
-        @shift = current_master.individual_shifts.find(params[:id])
-        @shift.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
-        @shift.mode = nil
-        @shift.next_staff_id = nil
-        @shift.save
+        @event = current_master.individual_shifts.find(params[:id])
+        @event.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
+        @event.mode = nil
+        @event.next_staff_id = nil
+        @event.save
       end
 
       #従業員がイエローラインに入る・他者のシフトに入る申請のmodalを返す

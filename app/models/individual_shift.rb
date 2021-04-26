@@ -18,7 +18,7 @@ class IndividualShift < ApplicationRecord
   def parent
     if self.staff.staff_number == 0
       if self.plan == nil
-        "　"
+        "募集中"
       else
         self.plan
       end
@@ -85,7 +85,7 @@ class IndividualShift < ApplicationRecord
   end
 
   def temp_color
-    same_time = self.master.individual_shifts.where(start:self.start)
+    same_time = self.master.individual_shifts.where(start:self.start).where(Temporary: false)
     if same_time.count < 2
       "red"
     else

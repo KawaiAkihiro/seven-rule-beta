@@ -80,6 +80,8 @@ Rails.application.routes.draw do
       get  :remove
       post :finish
       post :abandon
+
+      get  :not_submit_period
     end
 
     member do

@@ -8,6 +8,8 @@ class IndividualShiftsController < ApplicationController
         #このページで全てのアクションを実行していく
         @events = current_staff.individual_shifts.where(Temporary: false)
         @shift_separation = current_staff.master.shift_separations.all
+        @submit_start = current_staff.master.submits_start
+        @submit_finish = current_staff.master.submits_finish
     end
 
     def new
@@ -85,6 +87,10 @@ class IndividualShiftsController < ApplicationController
             flash.now[:danger] = "シフトが登録されています"
             render "index"
         end
+    end
+
+    def not_submit_period
+        return_html("not_submit_period")
     end
 
 

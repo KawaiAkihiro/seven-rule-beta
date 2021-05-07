@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post '/logout',    to:'sessions#destroy'
 
   resources :masters do
+    get       :shift_onoff_form, on: :collection
     patch     :shift_onoff   , on: :collection
     resources :shift_separations, :except => [:show]
+
 
     member do
       get :login,  to: 'masters#login_form'

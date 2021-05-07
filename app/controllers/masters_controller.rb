@@ -1,5 +1,6 @@
 class MastersController < ApplicationController
-    before_action :logged_in_master, only: [:show, :edit, :update]
+  require "date" 
+  before_action :logged_in_master, only: [:show, :edit, :update]
   before_action :corrent_master, only: [:show, :edit, :update]
 
   def new
@@ -24,10 +25,32 @@ class MastersController < ApplicationController
     end
   end
 
+  def shift_onoff_form
+    if !current_master.shift_onoff
+
+      render plain: render_to_string(partial: "shift_period", layout: false)
+    else
+      render plain: render_to_string(partial: "shift_submit_finish", layout: false)
+    end
+  end
+
   #シフトを募集開始or終了する処理
   def shift_onoff   #募集開始
     if !current_master.shift_onoff
-      current_master.shift_onoff = true
+
+      start  = params.require(:master).permit(:start).values
+      finish = params.require(:master).permit(:finish).values
+
+      if start[0] < finish[0]
+        current_master.submits_start = start[0]
+        current_master.submits_finish = finish[0]
+
+        current_master.shift_onoff = true
+      else
+        redirect_to root_path
+        flash[:danger] = "日付設定が間違っています。もう一度登録しなおしてください"
+        return
+      end
     else            #募集終了
       
       @staffs = current_master.staffs.where(abandon: true)
@@ -38,6 +61,7 @@ class MastersController < ApplicationController
 
       current_master.shift_onoff = false
     end
+    
     current_master.save
     redirect_to root_url
     current_master.shift_onoff ? flash[:success] = "シフト募集を開始しました" : flash[:success] = "シフト募集を終了しました"

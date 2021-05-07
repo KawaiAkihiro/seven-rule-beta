@@ -163,4 +163,20 @@ $(function(){
             alert("failed");
         });
     });
+
+    $("button.shift_period").click(function(){
+        $.ajax({
+            type: "GET",
+            url:  'masters/shift_onoff_form',
+        }).done(function(res){
+           //イベント登録用のhtmlを作成
+            $('.modal-body').html(res);
+        
+            $('#modal').fadeIn();
+            // 成功処理
+        }).fail(function (result) {
+            // 失敗処理
+            alert("failed");
+        });
+    })
 });

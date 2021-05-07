@@ -1,0 +1,15 @@
+<div class="row">
+      <div class="col text-center">
+        <h1>シフト募集開始</h1>
+        <%= form_with(model: current_master, url: shift_onoff_masters_path, html: {method: :patch}) do |f|%>
+            <%= render 'shared/error_messages', object: f.object %>
+            <br>
+            <%= f.label      :start, "初日", class: "pull-left" %>
+            <%= f.date_field :start, class: 'form-control',required: true %>
+            <br>
+            <%= f.label      :finish, "最終日", class: "pull-left" %>
+            <%= f.date_field :finish, class: 'form-control',required: true %>
+            <%= f.submit "募集を開始",   class: "btn btn-primary js-event-create-btn" %>
+        <% end %>
+    </div>
+</div>

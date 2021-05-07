@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_061412) do
+ActiveRecord::Schema.define(version: 2021_05_07_032642) do
 
   create_table "individual_shifts", charset: "utf8", force: :cascade do |t|
     t.datetime "start"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_061412) do
     t.boolean "onoff_email", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "submits_start"
-    t.datetime "submits_finish"
+    t.date "submits_start"
+    t.date "submits_finish"
   end
 
   create_table "notices", charset: "utf8", force: :cascade do |t|

@@ -19,5 +19,8 @@
             <%= f.text_field :staff_name, class: 'form-control' %>
             <%= f.submit "交代を直接反映する",   class: "btn btn-primary js-event-create-btn" %>
         <% end %>
+        <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
+            <%= f.submit "消去", class: "btn btn-danger" %>
+        <% end %>
     </div>
 </div> 

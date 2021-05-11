@@ -29,7 +29,7 @@ services:
       context: containers/nginx
     volumes:
       - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
+      - tmp-data:/webapp/tmp/sockets
     ports:
       - 80:80
     depends_on:

@@ -43,7 +43,7 @@ class StaffsController < ApplicationController
             master_staff_id = current_master.staff_number #店長の従業員番号
             @staffs.each do |staff|
                 @shift = staff.individual_shifts.where(Temporary: false)
-                if @shift.count != 0 && staff.staff_number != 0 && staff.staff_number != master_staff_id
+                if (@shift.count != 0 || staff.abandon)&& staff.staff_number != 0 && staff.staff_number != master_staff_id 
                     @no_staffs.push(staff)
                 end
             end

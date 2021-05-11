@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post '/logout',    to:'sessions#destroy'
 
   resources :masters do
+    get       :shift_onoff_form, on: :collection
     patch     :shift_onoff   , on: :collection
     resources :shift_separations, :except => [:show]
+
 
     member do
       get :login,  to: 'masters#login_form'
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
       post :create_plan
       get :new_shift
       post :create_shift
+      get :change_shift
     end
 
     member do
@@ -42,8 +45,12 @@ Rails.application.routes.draw do
 
       patch :change_empty
       patch :change_master
-      patch :change_me
+
+      patch :admit
+      patch :reject
       
+      patch :direct_change
+      patch :own_instead
     end
   end
 
@@ -74,10 +81,20 @@ Rails.application.routes.draw do
       patch  :perfect
       get  :remove
       post :finish
+      post :abandon
+
+      get  :not_submit_period
     end
 
     member do
       patch :deletable, to: 'individual_shifts#deletable'
+    end
+  end
+
+  resources :notices, :only => [:index] do
+    member do
+      patch :admit
+      patch :reject
     end
   end
 end

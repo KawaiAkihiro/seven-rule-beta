@@ -10,6 +10,11 @@ class Master < ApplicationRecord
 
     has_secure_password
     validates :password,   presence: true, length: { minimum: 6}, allow_nil: true
+    validate :start_finish_check
+
+    def start_finish_check
+        errors.add("日付が間違っています。正しく記入してください。") if self.submits_start >= self.submits_finish
+    end
 
     
     def Master.digest(string)

@@ -2,9 +2,9 @@
         <% if logged_in? %>
             <div class="shift_onoff">
                 <%if current_master.shift_onoff == false %>
-                    <%= link_to "募集を開始する",shift_onoff_masters_path, method: :patch, class: "btn btn-primary" %>
+                    <button type="button" name="name" class= "shift_period btn btn-primary">募集開始</button>
                 <% else %>
-                    <%= link_to "募集を終了する",shift_onoff_masters_path, method: :patch, class: "btn btn-danger" %>
+                    <button type="button" name="name" class= "shift_period btn btn-danger">募集終了</button>
                 <% end %>
             </div>  
             <div class="button"> 

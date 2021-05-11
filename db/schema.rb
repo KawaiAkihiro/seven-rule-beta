@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_164823) do
+ActiveRecord::Schema.define(version: 2021_05_07_032642) do
 
   create_table "individual_shifts", charset: "utf8", force: :cascade do |t|
     t.datetime "start"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_164823) do
     t.bigint "staff_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "next_staff_id"
     t.index ["staff_id"], name: "index_individual_shifts_on_staff_id"
   end
 
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_03_08_164823) do
     t.boolean "onoff_email", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "submits_start"
+    t.date "submits_finish"
   end
 
   create_table "notices", charset: "utf8", force: :cascade do |t|
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_164823) do
     t.bigint "master_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "abandon", default: false, null: false
     t.index ["master_id", "created_at"], name: "index_staffs_on_master_id_and_created_at"
     t.index ["master_id"], name: "index_staffs_on_master_id"
   end

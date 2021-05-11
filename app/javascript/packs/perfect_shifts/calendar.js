@@ -68,7 +68,8 @@ document.addEventListener('turbolinks:load', function() {
 
         eventClick: function(info){
             var id = info.event.id
-            if(info.el.style.backgroundColor == "yellow"){
+            // alert(info.el.style.backgroundColor)
+            if(info.el.style.backgroundColor == "yellow" || info.el.style.backgroundColor == "rgb(255, 182, 193)" ){
                 $.ajax({
                     type: "GET",
                     url:  "/perfect_shifts/fill",
@@ -86,6 +87,20 @@ document.addEventListener('turbolinks:load', function() {
                 $.ajax({
                     type: "GET",
                     url:  "/perfect_shifts/change",
+                    data: { shift_id : id },
+                    datatype: "html",
+                }).done(function(res){
+                
+                    $('.modal-body').html(res)
+                    $('#modal').fadeIn();
+                }).fail(function (result) {
+                    // 失敗処理
+                    alert("failed");
+                });
+            }else if(info.el.style.backgroundColor == "rgb(135, 206, 250)"){
+                $.ajax({
+                    type: "GET",
+                    url:  "/perfect_shifts/change_shift",
                     data: { shift_id : id },
                     datatype: "html",
                 }).done(function(res){
@@ -148,4 +163,20 @@ $(function(){
             alert("failed");
         });
     });
+
+    $("button.shift_period").click(function(){
+        $.ajax({
+            type: "GET",
+            url:  'masters/shift_onoff_form',
+        }).done(function(res){
+           //イベント登録用のhtmlを作成
+            $('.modal-body').html(res);
+        
+            $('#modal').fadeIn();
+            // 成功処理
+        }).fail(function (result) {
+            // 失敗処理
+            alert("failed");
+        });
+    })
 });

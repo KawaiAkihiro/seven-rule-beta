@@ -1,10 +1,15 @@
 <% provide(:title, 'シフト提出') %>
 <div class="wrapper">
   <div class="open_title">
-    <h1>シフト提出中</h1>
+    <% if current_staff.abandon %>
+      <h1 class="text-danger">シフト提出中</h1>
+    <% else %>
+      <h1>シフト提出中</h1>
+    <% end %>
   </div>
   <div class ="submit">
-    <%= link_to "終了する", finish_individual_shifts_path, method: :post, class:"btn btn-primary", data: { confirm: '終了してよろしいですか？(追加登録は可能です)' } %>
+    <%= link_to "今月はシフトを提出しない", abandon_individual_shifts_path, method: :post,  class:"btn btn-primary", data: { confirm: '終了してよろしいですか？(追加登録は可能です)' }%>
+    <%= link_to "提出を終了する", finish_individual_shifts_path, method: :post, class:"btn btn-primary", data: { confirm: '終了してよろしいですか？(追加登録は可能です)' } %>
   </div>
   <% if current_staff.training_mode == true %>
     <div id="navi_open" class="navi">
@@ -30,7 +35,8 @@
       </div>   
     </div>  
   <% end %>
-           
+  <div id="submit_start" data-submit_start="<%= @submit_start.to_json %>"></div>
+  <div id="submit_finish" data-submit_finish="<%= @submit_finish.to_json %>"></div>        
   <div id="calendar"></div>
 
   <div id="modal" tabindex="-1" role="dialog">

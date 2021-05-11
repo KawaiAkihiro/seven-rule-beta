@@ -1,9 +1,13 @@
-<h1><%= @event.date%>　<%= @event.plan %></h1>
+<div class="row">
+    <div class="col text-center">
+        <h1><%= @event.date%>　<%= @event.plan %></h1>
+    </div>
+</div>
 
 <div class="row">
-    <div class="col">
+    <div class="col text-center">
         <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
-            <%= f.submit "消去", class: "btn btn-primary delete" %>
+            <%= f.submit "消去", class: "btn btn-danger delete" %>
         <% end %>
     </div>
 </div>    

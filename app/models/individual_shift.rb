@@ -23,7 +23,12 @@ class IndividualShift < ApplicationRecord
         self.plan
       end
     else
-      self.staff.staff_name
+      if self.staff.training_mode
+        self.staff.staff_name + "(研)"
+      else
+        self.staff.staff_name
+      end
+      
     end
     
   end
@@ -65,14 +70,22 @@ class IndividualShift < ApplicationRecord
   #空きシフトは背景を黄色で表示
   def backgroundColor
     if self.staff.staff_number == 0 && self.finish != nil
-      "yellow"
+      if self.mode == nil
+        "yellow"
+      elsif self.mode == "fill"
+        "#ffb6c1"
+      end
     else
-      "white"
+      if self.mode == "instead"
+        "#87cefa"
+      elsif self.mode == nil
+        "white"
+      end
     end
   end
 
   def temp_color
-    same_time = self.master.individual_shifts.where(start:self.start)
+    same_time = self.master.individual_shifts.where(start:self.start).where(Temporary: false)
     if same_time.count < 2
       "red"
     else

@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/webapp
       - public-data:/webapp/public
-      - tmp-data:/webapp/tmp
+      - tmp-data:/webapp/tmp/sockets
       - log-data:/webapp/log
     # depends_on:
     #   - db

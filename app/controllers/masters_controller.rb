@@ -9,14 +9,16 @@ class MastersController < ApplicationController
 
   def create
     @master = Master.new(master_params)
+    @master.submits_start = "2021-01-01"
+    @master.submits_finish = "2021-01-02"
     if @master.save
       log_in @master
       
       #店長用の従業員データを作成
-      create_staff(@master.user_name, @master.staff_number)
+      create_staff(@master,@master.user_name, @master.staff_number)
 
       #空きシフトを作るための空従業員を作成
-      create_staff("empty", 0)
+      create_staff(@master,"empty", 0)
 
       flash[:success] = "ユーザー登録が完了しました！"
       redirect_to root_path
@@ -114,8 +116,8 @@ class MastersController < ApplicationController
       params.require(:master).permit(:store_name, :user_name, :staff_number, :email, :onoff_email, :password, :password_confirmation)
     end
 
-    def create_staff(name, number)
-      @staff = @master.staffs.new
+    def create_staff(master,name, number)
+      @staff = master.staffs.new
       @staff.staff_name = name
       @staff.staff_number = number
       @staff.password = "0000"

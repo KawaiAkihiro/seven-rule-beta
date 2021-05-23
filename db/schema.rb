@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_032642) do
+ActiveRecord::Schema.define(version: 2021_05_15_133338) do
 
   create_table "individual_shifts", charset: "utf8", force: :cascade do |t|
     t.datetime "start"

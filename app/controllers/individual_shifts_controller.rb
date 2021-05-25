@@ -6,7 +6,7 @@ class IndividualShiftsController < ApplicationController
 
     def index
         #このページで全てのアクションを実行していく
-        @events = current_staff.individual_shifts.where(Temporary: false)
+        @events = current_staff.individual_shifts.where(temporary: false)
         @shift_separation = current_staff.master.shift_separations.all
         @submit_start = current_staff.master.submits_start
         @submit_finish = current_staff.master.submits_finish
@@ -64,10 +64,10 @@ class IndividualShiftsController < ApplicationController
         if logged_in_staff? && logged_in?
             @event = current_master.individual_shifts.find(params[:id]).destroy
         #従業員のみログイン中
-        elsif logged_in_staff? && !logged_in?
+        elsif logged_in_staff?
             @event = current_staff.individual_shifts.find(params[:id]).destroy
         #店長のみログイン中
-        elsif logged_in? && !logged_in_staff?
+        elsif logged_in?
             @event = current_master.individual_shifts.find(params[:id]).destroy
         end
     end
@@ -78,7 +78,9 @@ class IndividualShiftsController < ApplicationController
     end
 
     def abandon
-        if current_staff.individual_shifts.count == 0
+        @shifts = current_staff.individual_shifts.where(temporary: false)
+        logger.debug(@shifts)
+        if @shifts.count == 0
             current_staff.abandon = true
             current_staff.save
             flash[:success] = "登録を終了しました！"

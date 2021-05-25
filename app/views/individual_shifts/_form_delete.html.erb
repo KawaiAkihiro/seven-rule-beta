@@ -1,7 +1,9 @@
 <h1><%= @event.fulltime %></h1>
 
 <div class="row">
-    <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
-        <%= f.submit "消去", class: "btn btn-primary" %>
-    <% end %>
+    <div class="col text-center">
+        <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>
+            <%= f.submit "消去", class: "btn btn-primary" %>
+        <% end %>
+    </div>
 </div>    

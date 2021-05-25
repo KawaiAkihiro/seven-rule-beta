@@ -15,7 +15,7 @@ class MastersController < ApplicationController
       log_in @master
       
       #店長用の従業員データを作成
-      create_staff(@master,@master.user_name, @master.staff_number)
+      create_staff(@master,@master.user_name, @master.number)
 
       #空きシフトを作るための空従業員を作成
       create_staff(@master,"empty", 0)
@@ -76,6 +76,11 @@ class MastersController < ApplicationController
   def update
     @master = Master.find(params[:id])
     if @master.update(master_params)
+
+      staff = @master.staffs.find_by(name: @master.user_name)
+      staff.number = @master.staff_number
+      staff.save
+
       flash[:success] = "ユーザー情報を変更しました"
       redirect_to root_url
     else
@@ -88,14 +93,14 @@ class MastersController < ApplicationController
     @master = Master.find(params[:id])
      if logged_in_staff?
       redirect_to root_url
-      flash[:success] = "現在　#{current_staff.staff_name}さん　としてログイン中です"
+      flash[:success] = "現在　#{current_staff.name}さん　としてログイン中です"
      end
   end
   
   #従業員用ログイン処理
   def login
     @master = Master.find(params[:id])
-    @staff  = @master.staffs.find_by(staff_number: params[:staffs_session][:staff_number])  
+    @staff  = @master.staffs.find_by(number: params[:staffs_session][:number])  
     if @staff && @staff.authenticate(params[:staffs_session][:password])
       log_in_staff(@staff)
       redirect_to root_path
@@ -118,8 +123,8 @@ class MastersController < ApplicationController
 
     def create_staff(master,name, number)
       @staff = master.staffs.new
-      @staff.staff_name = name
-      @staff.staff_number = number
+      @staff.name = name
+      @staff.number = number
       @staff.password = "0000"
       @staff.password_confirmation = "0000"
       @staff.save

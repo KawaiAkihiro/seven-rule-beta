@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col text-center">
-        <h1><%= @event.staff.staff_name %></h1>
+        <h1><%= @event.staff.name %></h1>
         <h1><%= @event.fulltime %></h1>
     </div>
 </div>    
@@ -15,8 +15,8 @@
             <%= f.submit "店長が入る", class: "btn btn-primary" %>
         <% end %>
         <%= form_with(model: @event, url: direct_change_perfect_shift_path(@event), html: {method: :patch},local: false) do |f|%>
-            <%= f.label      :staff_name, "シフトを変わってくれる従業員の氏名", class: "pull-left" %>
-            <%= f.text_field :staff_name, class: 'form-control' %>
+            <%= f.label      :name, "シフトを変わってくれる従業員の氏名", class: "pull-left" %>
+            <%= f.text_field :name, class: 'form-control' %>
             <%= f.submit "交代を直接反映する",   class: "btn btn-primary js-event-create-btn" %>
         <% end %>
         <%= form_with(model: @event, url: individual_shift_path(@event), html: { method: :delete }, local: false) do |f| %>

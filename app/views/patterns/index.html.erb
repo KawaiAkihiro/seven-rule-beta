@@ -1,7 +1,7 @@
 <% provide(:title, 'シフトパターン一覧') %>
 <div class="wrapper">  
   <section class="info">   
-    <h1><%= current_staff.staff_name %>さんのシフトパターン一覧</h1>
+    <h1><%= current_staff.name %>さんのシフトパターン一覧</h1>
         <% if @patterns.count != 0 %>
             <ul>
                 <% @patterns.each do |pattern| %>

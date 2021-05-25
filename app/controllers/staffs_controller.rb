@@ -3,7 +3,7 @@ class StaffsController < ApplicationController
     before_action :corrent_staff,   only: [:show, :edit, :update]
 
     def index
-        @staffs = current_master.staffs.where.not(staff_number:0).where.not(staff_number:current_master.staff_number).page(params[:page]).per(6)
+        @staffs = current_master.staffs.where.not(number:0).where.not(number:current_master.staff_number).page(params[:page]).per(6)
     end
 
     def new
@@ -22,33 +22,11 @@ class StaffsController < ApplicationController
 
     #未提出の従業員を抽出
     def no_submits
-        @no_staffs = []
-        if current_master.shift_onoff
-            @staffs = current_master.staffs.all
-            master_staff_id = current_master.staff_number #店長の従業員番号
-            @staffs.each do |staff|
-                @shift = staff.individual_shifts.where(Temporary: false)
-                if @shift.count == 0 && staff.staff_number != 0 && staff.staff_number != master_staff_id
-                    @no_staffs.push(staff)
-                end
-            end
-        end
-        @no_staffs
+        @no_staffs = current_master.unsubmit_staff
     end
 
     def already_submits
-        @no_staffs = []
-        if current_master.shift_onoff
-            @staffs = current_master.staffs.all
-            master_staff_id = current_master.staff_number #店長の従業員番号
-            @staffs.each do |staff|
-                @shift = staff.individual_shifts.where(Temporary: false)
-                if (@shift.count != 0 || staff.abandon)&& staff.staff_number != 0 && staff.staff_number != master_staff_id 
-                    @no_staffs.push(staff)
-                end
-            end
-        end
-        @no_staffs
+        @no_staffs = current_master.submited_staff
     end
     
     def edit
@@ -97,6 +75,6 @@ class StaffsController < ApplicationController
 
     private
         def staff_params
-         params.require(:staff).permit(:staff_name, :staff_number, :password, :password_confirmation, :training_mode)
+         params.require(:staff).permit(:name, :number, :password, :password_confirmation, :training_mode)
         end
 end

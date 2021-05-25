@@ -41,4 +41,34 @@ class Master < ApplicationRecord
     def forget
         update_attribute(:remember_digest, nil)
     end
+
+    def submited_staff
+        @no_staffs = []
+        if self.shift_onoff
+            @staffs = self.staffs.all
+            master_staff_id = self.staff_number #店長の従業員番号
+            @staffs.each do |staff|
+                @shift = staff.individual_shifts.where(temporary: false)
+                if (@shift.count != 0 || staff.abandon)&& staff.number != 0 && staff.number != master_staff_id 
+                    @no_staffs.push(staff)
+                end
+            end
+        end
+        @no_staffs
+    end
+
+    def unsubmit_staff
+        @no_staffs = []
+        if self.shift_onoff
+            @staffs = self.staffs.all
+            master_staff_id = self.staff_number #店長の従業員番号
+            @staffs.each do |staff|
+                @shift = staff.individual_shifts.where(temporary: false)
+                if @shift.count == 0 && staff.number != 0 && staff.number != master_staff_id
+                    @no_staffs.push(staff)
+                end
+            end
+        end
+        @no_staffs
+    end
 end

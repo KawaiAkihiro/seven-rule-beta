@@ -1,27 +1,29 @@
 <h1>新規シフト</h1>
 
 <div class="row new_shift">
-      <%= form_with model: @event, url: individual_shifts_path, local: false do |f| %>
-         <%= render 'shared/error_messages', object: f.object %>
+      <div class="col">
+            <%= form_with model: @event, url: individual_shifts_path, local: false do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
 
-        <div class="form-inline text-left start">
-         <%= f.label :start,"出勤時刻", {class:'control-label'}%>
-         <%= f.datetime_select :start, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control bootstrap-date mb-3' %>
-        </div>
-         <br>
-        <div class="form-inline text-left"> 
-         <%= f.label :finish,"退勤時刻", {class:'control-label'}%>
-         <%= f.time_select :finish, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
-        </div>
-        <% if @patterns.count > 0 %>
-            <% @patterns.each do |pattern| %>
-                  <li class="pattern btn btn-danger" value="<%= pattern.start_h %>,<%= pattern.finish_h%>">
-                        <%= pattern.start_to_finish %>
-                  </li> 
+            <div class="form-inline text-left start">
+            <%= f.label :start,"出勤時刻", {class:'control-label'}%>
+            <%= f.datetime_select :start, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control bootstrap-date mb-3' %>
+            </div>
+            <br>
+            <div class="form-inline text-left"> 
+            <%= f.label :finish,"退勤時刻", {class:'control-label'}%>
+            <%= f.time_select :finish, {default: Date.today + 0.hours + 00.minutes, minute_step: 60}, class: 'form-control' %>
+            </div>
+            <% if @patterns.count > 0 %>
+                  <% @patterns.each do |pattern| %>
+                        <li class="pattern btn btn-danger" value="<%= pattern.start_hour %>,<%= pattern.finish_hour%>">
+                              <%= pattern.start_to_finish %>
+                        </li> 
+                  <% end %>
+            <% end %>    
+            <%= f.submit "登録",   class: "btn btn-primary js-event-create-btn" %>
             <% end %>
-        <% end %>    
-        <%= f.submit "登録",   class: "btn btn-primary js-event-create-btn" %>
-      <% end %>
+      </div>
 </div>      
 
 <%= javascript_pack_tag 'individual_shifts/auto_shift' %>

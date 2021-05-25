@@ -1,7 +1,7 @@
 <div class="wrapper">
         <% if logged_in? %>
             <div class="shift_onoff">
-                <%if current_master.shift_onoff == false %>
+                <%if !current_master.shift_onoff %>
                     <button type="button" name="name" class= "shift_period btn btn-primary">募集開始</button>
                 <% else %>
                     <button type="button" name="name" class= "shift_period btn btn-danger">募集終了</button>

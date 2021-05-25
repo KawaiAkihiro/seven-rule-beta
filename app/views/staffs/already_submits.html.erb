@@ -5,7 +5,10 @@
       <ul>
          <% @no_staffs.each do |staff| %>
             <li>
-               <%= staff.staff_name %>
+               <%= staff.name %>
+               <% if staff.abandon %>
+                 (今月は提出しない)
+               <% end %>
             </li>
          <% end %>　 
       <ul>

@@ -23,12 +23,7 @@ class IndividualShift < ApplicationRecord
         self.plan
       end
     else
-      if self.staff.training_mode
-        self.staff.name + "(研)"
-      else
-        self.staff.name
-      end
-      
+      self.staff.name
     end
     
   end

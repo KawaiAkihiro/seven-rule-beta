@@ -16,7 +16,7 @@ class IndividualShift < ApplicationRecord
 
   #カレンダーで表示する名前
   def parent
-    if self.staff.staff_number == 0
+    if self.staff.number == 0
       if self.plan == nil
         "募集中"
       else
@@ -24,9 +24,9 @@ class IndividualShift < ApplicationRecord
       end
     else
       if self.staff.training_mode
-        self.staff.staff_name + "(研)"
+        self.staff.name + "(研)"
       else
-        self.staff.staff_name
+        self.staff.name
       end
       
     end
@@ -69,7 +69,7 @@ class IndividualShift < ApplicationRecord
 
   #空きシフトは背景を黄色で表示
   def backgroundColor
-    if self.staff.staff_number == 0 && self.finish != nil
+    if self.staff.number == 0 && self.finish != nil
       if self.mode == nil
         "yellow"
       elsif self.mode == "fill"
@@ -85,9 +85,13 @@ class IndividualShift < ApplicationRecord
   end
 
   def temp_color
-    same_time = self.master.individual_shifts.where(start:self.start).where(Temporary: false)
-    if same_time.count < 2
-      "red"
+    same_time = self.master.individual_shifts.where(start:self.start).where(temporary: false)
+    unless allDay 
+      if same_time.count < 2
+        "red"
+      else
+        "black"
+      end
     else
       "black"
     end

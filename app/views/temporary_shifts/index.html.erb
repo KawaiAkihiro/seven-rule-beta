@@ -1,10 +1,6 @@
 <% provide(:title, 'シフト調整中') %>
 <div class="wrapper">
-  <div class="confirm">
-    <%= link_to "確定する", perfect_temporary_shifts_path, method: :patch, class:"btn btn-primary",
-    data: { confirm: 'これで確定して間違いありませんか?' } %>
-  </div> 
-  <div class="button"> 
+  <div class="button" id="temp_btn"> 
     <%= link_to "仮削除一覧", deletable_shifts_path , class:"btn btn-primary"%>
     <button type="button" name="name" class="plan btn btn-primary">営業•催事を追加する</button>
     <button type="button" name="name" class="shift btn btn-primary">空きシフトを追加する</button>
@@ -21,6 +17,11 @@
   <div class="all-calendar">
       <div id="calendar"></div>
   </div>
+
+  <div class="confirm">
+    <%= link_to "確定する", perfect_temporary_shifts_path, method: :patch, class:"btn btn-danger",
+    data: { confirm: 'これで確定して間違いありませんか?' } %>
+  </div> 
 
   <div id="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col text-center">
         <h1><%= @event.fulltime %></h1>
-        <h1><%= @event.staff.staff_name %>が</h1>
-        <h1><%= current_master.staffs.find(@event.next_staff_id).staff_name %>と</h1>
+        <h1><%= @event.staff.name %>が</h1>
+        <h1><%= current_master.staffs.find(@event.next_staff_id).name %>と</h1>
         <h1>交代しようとしています</h1>
     </div>
 </div>

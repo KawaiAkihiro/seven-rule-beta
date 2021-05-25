@@ -14,9 +14,9 @@
                            <input id="close" type="checkbox">
                            <% if logged_in? && logged_in_staff?%>
                               <h1><%= link_to current_master.store_name, root_path %></h1>
-                           <% elsif !logged_in? && logged_in_staff?  %>
+                           <% elsif logged_in_staff?  %>
                               <h1><%= link_to current_staff.master.store_name, root_path %></h1>
-                           <% elsif logged_in? && !logged_in_staff? %>
+                           <% elsif logged_in? %>
                               <h1><%= link_to current_master.store_name, root_path %></h1>
                            <% end %>
                         </div>
@@ -29,9 +29,9 @@
                         <br>
                         <div class="line"></div>
                         <%= render "layouts/menu_staff" %>
-                     <% elsif !logged_in? && logged_in_staff? %>
+                     <% elsif logged_in_staff? %>
                         <%= render "layouts/menu_staff" %>
-                     <% elsif logged_in? && !logged_in_staff? %>  
+                     <% elsif logged_in? %>  
                         <%= render "layouts/menu_master" %>
                      <% end %>  
                   </ul>

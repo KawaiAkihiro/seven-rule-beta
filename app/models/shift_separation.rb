@@ -15,7 +15,7 @@ class ShiftSeparation < ApplicationRecord
   end
 
   #空きシフトの自動入力に使う
-  def start_h
+  def start_hour
     if self.start_time.hour < 10
       "0#{self.start_time.hour}"
     else
@@ -24,7 +24,7 @@ class ShiftSeparation < ApplicationRecord
   end
 
   #空きシフトの自動入力に使う
-  def finish_h
+  def finish_hour
     if self.finish_time.hour < 10
       "0#{self.finish_time.hour}"
     else

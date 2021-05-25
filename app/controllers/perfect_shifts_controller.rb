@@ -2,11 +2,11 @@ class PerfectShiftsController < ApplicationController
       def index
         #このページで全てのアクションを起こす
         if logged_in? && logged_in_staff?
-            @events = current_master.individual_shifts.where(Temporary: true)
-        elsif logged_in_staff? && !logged_in? 
-            @events = current_staff.master.individual_shifts.where(Temporary: true)
-        elsif logged_in? && !logged_in_staff?
-            @events = current_master.individual_shifts.where(Temporary: true)
+            @events = current_master.individual_shifts.where(temporary: true)
+        elsif logged_in_staff?
+            @events = current_staff.master.individual_shifts.where(temporary: true)
+        elsif logged_in?
+            @events = current_master.individual_shifts.where(temporary: true)
         end
       end
     
@@ -23,8 +23,8 @@ class PerfectShiftsController < ApplicationController
       #終日予定を追加処理
       def create_plan
         @event = current_master.individual_shifts.new(params_plan)
-        @event.staff = current_master.staffs.find_by(staff_number: 0)
-        @event.Temporary = true
+        @event.staff = current_master.staffs.find_by(number: 0)
+        @event.temporary = true
         @event.save
       end
 
@@ -39,8 +39,8 @@ class PerfectShiftsController < ApplicationController
       def create_shift
         @event = current_master.individual_shifts.new(params_shift)
         change_finishDate
-        @event.staff = current_master.staffs.find_by(staff_number: 0)
-        @event.Temporary = true
+        @event.staff = current_master.staffs.find_by(number: 0)
+        @event.temporary = true
         unless @event.save
           render partial: "individual_shifts/error"
         end
@@ -53,7 +53,7 @@ class PerfectShiftsController < ApplicationController
           fill_form_master
     
         #従業員のみログイン時
-        elsif !logged_in? && logged_in_staff?
+        elsif logged_in_staff?
           @event = current_staff.master.individual_shifts.find(params[:shift_id])
           @already_event = current_staff.individual_shifts.find_by(start: @event.start)
           @already_request_event = current_staff.master.individual_shifts.find_by(start: @event.start, next_staff_id: current_staff.id)
@@ -73,7 +73,7 @@ class PerfectShiftsController < ApplicationController
           end
     
         #店長のみログイン時
-        elsif logged_in? && !logged_in_staff?
+        elsif logged_in?
           fill_form_master
         
         end
@@ -85,13 +85,13 @@ class PerfectShiftsController < ApplicationController
 
           fill_in_master
     
-        elsif !logged_in? && logged_in_staff?
+        elsif logged_in_staff?
 
           @event = current_staff.master.individual_shifts.find(params[:id])
           @event.mode = "fill"
           @event.next_staff_id = current_staff.id
 
-        elsif logged_in? && !logged_in_staff?  
+        elsif logged_in?
 
           fill_in_master
         end
@@ -116,7 +116,7 @@ class PerfectShiftsController < ApplicationController
               return_html("plan_delete")
             end
     
-          elsif !logged_in? && logged_in_staff?
+          elsif logged_in_staff?
             @event = current_staff.master.individual_shifts.find(params[:shift_id])
             @already_event = current_staff.individual_shifts.find_by(start: @event.start)
             @already_request_event = current_staff.master.individual_shifts.find_by(start: @event.start, next_staff_id: current_staff.id)
@@ -143,7 +143,7 @@ class PerfectShiftsController < ApplicationController
               return_html("alert")
             end
     
-          elsif logged_in? && !logged_in_staff?
+          elsif logged_in?
             @event = current_master.individual_shifts.find(params[:shift_id])
             unless @event.allDay
               #店長権限でシフトをダイレクトに削除する
@@ -188,7 +188,7 @@ class PerfectShiftsController < ApplicationController
       #空きシフトに変更
       def change_empty
         @event = current_master.individual_shifts.find(params[:id])
-        @event.staff = current_master.staffs.find_by(staff_number:0)
+        @event.staff = current_master.staffs.find_by(number:0)
         @event.mode = nil
         @event.next_staff_id = nil
         @event.save
@@ -197,7 +197,7 @@ class PerfectShiftsController < ApplicationController
       #店長がシフトインする
       def change_master
         @event = current_master.individual_shifts.find(params[:id])
-        @event.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
+        @event.staff = current_master.staffs.find_by(number:current_master.staff_number)
         @event.mode = nil
         @event.next_staff_id = nil
         @event.save
@@ -208,9 +208,9 @@ class PerfectShiftsController < ApplicationController
         if logged_in? && logged_in_staff?
           @event = current_master.individual_shifts.find(params[:shift_id])
           return_html("judge_instead")
-        elsif !logged_in? && logged_in_staff?
+        elsif logged_in_staff?
           return_html("alert")
-        elsif logged_in? && !logged_in_staff?
+        elsif logged_in?
           @event = current_master.individual_shifts.find(params[:shift_id])
           return_html("judge_instead")
         end
@@ -219,8 +219,8 @@ class PerfectShiftsController < ApplicationController
       #店長が店舗で書きかえられた変更を反映する
       def direct_change
         @event = current_master.individual_shifts.find(params[:id])
-        name = params.require(:individual_shift).permit(:staff_name)
-        new_staff = current_master.staffs.find_by(staff_name: name.values)
+        name = params.require(:individual_shift).permit(:name)
+        new_staff = current_master.staffs.find_by(name: name.values)
 
         if new_staff.present?
           @already_event = current_master.individual_shifts.find_by(start: @event.start, staff_id: new_staff.id)
@@ -238,8 +238,8 @@ class PerfectShiftsController < ApplicationController
       #自分のシフトと変わってくれる人を申請する
       def own_instead
         @event = current_staff.master.individual_shifts.find(params[:id])
-        name = params.require(:individual_shift).permit(:staff_name)
-        new_staff = current_staff.master.staffs.find_by(staff_name: name.values)
+        name = params.require(:individual_shift).permit(:name)
+        new_staff = current_staff.master.staffs.find_by(name: name.values)
 
         if new_staff.present?
           @already_event = current_staff.master.individual_shifts.find_by(start: @event.start, staff_id: new_staff.id)
@@ -272,7 +272,7 @@ class PerfectShiftsController < ApplicationController
         #空きシフトに店長が入る処理
         def fill_in_master
           @event = current_master.individual_shifts.find(params[:id])
-          @event.staff = current_master.staffs.find_by(staff_number:current_master.staff_number)
+          @event.staff = current_master.staffs.find_by(number:current_master.staff_number)
           @event.mode = nil
           @event.next_staff_id = nil
         end

@@ -1,10 +1,10 @@
 <%= form_with(model:@staff, local: true) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label      :staff_name, "氏名" %>
-        <%= f.text_field :staff_name, class: 'form-control' %>
+        <%= f.label      :name, "氏名" %>
+        <%= f.text_field :name, class: 'form-control' %>
 
-        <%= f.label        :staff_number, "従業員番号" %>
-        <%= f.number_field :staff_number, class: 'form-control' %>
+        <%= f.label        :number, "従業員番号" %>
+        <%= f.number_field :number, class: 'form-control' %>
 
         <% if controller.action_name == "new" %>
           <p class="attention">初期パスワードは統一しましょう</p>

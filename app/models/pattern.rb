@@ -4,7 +4,7 @@ class Pattern < ApplicationRecord
   default_scope -> { order(start: :asc) }
 
   #自動選択機能のために使う
-  def start_h
+  def start_hour
     if self.start.hour < 10
       "0#{self.start.hour}"
     else
@@ -12,7 +12,7 @@ class Pattern < ApplicationRecord
     end
   end
   #自動選択機能のために使う
-  def finish_h
+  def finish_hour
     if self.finish.hour < 10
       "0#{self.finish.hour}"
     else

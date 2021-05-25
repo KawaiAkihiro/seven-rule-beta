@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_15_133338) do
+ActiveRecord::Schema.define(version: 2021_05_25_061100) do
 
   create_table "individual_shifts", charset: "utf8", force: :cascade do |t|
     t.datetime "start"
     t.datetime "finish"
-    t.boolean "Temporary", default: false, null: false
+    t.boolean "temporary", default: false, null: false
     t.boolean "deletable", default: false, null: false
     t.string "mode"
     t.string "plan"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2021_05_15_133338) do
   end
 
   create_table "staffs", charset: "utf8", force: :cascade do |t|
-    t.string "staff_name"
-    t.integer "staff_number"
+    t.string "name"
+    t.integer "number"
     t.boolean "training_mode"
     t.string "password_digest"
     t.bigint "master_id", null: false

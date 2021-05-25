@@ -1,8 +1,8 @@
-<h1><%= @event.staff.staff_name %></h1>
+<h1><%= @event.staff.name %></h1>
 <h1><%= @event.fulltime %></h1>
 
 <%= form_with(model: @event, url: own_instead_perfect_shift_path(@event), html: {method: :patch},local: false) do |f|%>
-    <%= f.label      :staff_name, "シフトを変わってくれる従業員の氏名", class: "pull-left" %>
-    <%= f.text_field :staff_name, class: 'form-control' %>
+    <%= f.label      :name, "シフトを変わってくれる従業員の氏名", class: "pull-left" %>
+    <%= f.text_field :name, class: 'form-control' %>
     <%= f.submit "交代を申請する",   class: "btn btn-primary js-event-create-btn" %>
 <% end %>

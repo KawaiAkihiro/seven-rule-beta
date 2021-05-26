@@ -15,7 +15,7 @@ class MastersController < ApplicationController
       log_in @master
       
       #店長用の従業員データを作成
-      create_staff(@master,@master.user_name, @master.number)
+      create_staff(@master,@master.user_name, @master.staff_number)
 
       #空きシフトを作るための空従業員を作成
       create_staff(@master,"empty", 0)

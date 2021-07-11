@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   resources :individual_shifts do
     
     collection do
+      get :bulk_new
+      post :bulk_create
       patch  :perfect
       get  :remove
       post :finish

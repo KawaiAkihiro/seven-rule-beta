@@ -347,6 +347,10 @@ td.fc-day-sun {
     }
 }
 
+.fc-daygrid-day-frame{
+    cursor: pointer;
+}
+
 
 
 
@@ -760,4 +764,17 @@ p.warning{
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {        
     border-radius: 15px;    /*角を丸くする*/
+}
+
+.wday{
+    input{
+        margin-bottom: 0;
+    }
+
+    &_title{
+        align-items: center;
+        margin-bottom: 0;
+    }
+    width: 10%;
+    align-items: center;
 }

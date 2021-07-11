@@ -15,4 +15,5 @@ module IndividualShiftsHelper
             @event.finish = @event.finish.change(year: @event.start.year, month: @event.start.month, day: @event.start.day)
         end
     end
+        
 end

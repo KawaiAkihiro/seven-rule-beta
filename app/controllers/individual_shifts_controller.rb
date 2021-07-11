@@ -95,6 +95,68 @@ class IndividualShiftsController < ApplicationController
         return_html("not_submit_period")
     end
 
+    def bulk_new
+        @event = current_staff.individual_shifts.new
+        @patterns = current_staff.patterns.all
+        #新規作成のmodal用のhtmlを返す
+        render plain: render_to_string(partial: 'form_bulknew', layout: false, locals: { event: @event, patterns: @patterns })
+    end
+
+    def bulk_create
+        start = current_staff.master.submits_start
+        finish = current_staff.master.submits_finish
+        wdays = params[:wday][:ingredients].map(&:to_i)
+        wdays.shift
+        days = []
+        if wdays.empty?
+            render partial: "bulk_error"
+        else
+            (start..finish).each do |date|
+                wdays.each do |i|
+                    if date.wday == i
+                        days.push(date)
+                    end
+                end
+            end
+
+            days.each do |day|
+                date = [day.year, day.month, day.day]
+                @event = current_staff.individual_shifts.new(params_event)
+                @event.start = @event.start.change(year: date[0], month: date[1], day: date[2])
+                #日付を自動調整
+                change_finishDate 
+                #同じ時間のシフトを捜索
+                @already_event = current_staff.individual_shifts.where(start:@event.start).where(finish:@event.finish)
+                
+                #シフトパターンを作成
+                @pattern = current_staff.patterns.new(params_event) 
+                @already_pattern = current_staff.patterns.where(start: @pattern.start).where(finish: @pattern.finish)
+                
+                #すでに同じシフトを登録していないか判定
+                unless @already_event.present?
+                    
+                    if @event.save  
+                        #過去に同じ時間帯に登録したことがなければ新しい登録パターンを追加
+                        unless @already_pattern.present?
+                            @pattern.save
+                        end
+                        #シフト放棄状態の人が追加した時は放棄を無くす
+                        if current_staff.abandon 
+                            current_staff.abandon = false
+                            current_staff.save
+                        end
+                    else
+                        render partial: "error"
+                        break
+                    end
+                else
+                    #被りエラー回避
+                    next
+                end 
+            end
+        end
+    end
+
 
     private
       def params_event

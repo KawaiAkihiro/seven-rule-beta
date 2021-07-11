@@ -120,3 +120,21 @@ document.addEventListener('turbolinks:load', function() {
         calendar.refetchEvents();
     });
 });
+
+$(function(){
+    $('button.bulk').click(function(){
+        $.ajax({
+            type: 'GET',
+            url:  '/individual_shifts/bulk_new',
+        }).done(function (res) {
+            //イベント登録用のhtmlを作成
+            $('.modal-body').html(res);
+        
+            $('#modal').fadeIn();
+            // 成功処理
+        }).fail(function (result) {
+            // 失敗処理
+            alert("failed");
+        });
+    });
+})

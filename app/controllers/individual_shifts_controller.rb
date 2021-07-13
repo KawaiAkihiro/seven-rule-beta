@@ -157,6 +157,29 @@ class IndividualShiftsController < ApplicationController
         end
     end
 
+    def bulk_delete_form
+        @event = current_staff.individual_shifts.where("temporary": false)
+        if @event.empty?
+            return_html("empty_shift")
+        else
+            return_html("form_bulk_delete")
+        end
+        
+    end
+
+    def bulk_delete
+        shifts = params[:delete][:ingredients].map(&:to_i)
+        shifts.shift
+        if shifts.empty?
+            render partial: "bulk_error"
+        else
+            shifts.each do |shift|
+                @event = current_staff.individual_shifts.find(shift)
+                @event.destroy
+            end
+        end
+    end
+
 
     private
       def params_event

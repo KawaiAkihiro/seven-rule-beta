@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col text-center">
+        <%= form_with url: bulk_delete_individual_shifts_path, local: false do |f| %>
+            <%= hidden_field_tag 'delete[ingredients][]' %>
+            <% @event.each do |event| %>
+                <label>
+                    <%= event.fulltime %>
+                    <%= check_box_tag 'delete[ingredients][]', event.id ,false,id:"delete_#{event.id}" %>
+                </label>
+            <% end %>
+            <%= f.submit "削除",   class: "btn btn-danger js-event-create-btn" %>
+        <% end %>
+    </div>
+</div>

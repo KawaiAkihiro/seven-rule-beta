@@ -62,6 +62,7 @@ Rails.application.routes.draw do
       post :create_plan
       get  :delete
       patch :perfect
+      get :verification
     end
     
     member do
@@ -84,6 +85,9 @@ Rails.application.routes.draw do
       get  :remove
       post :finish
       post :abandon
+
+      get :bulk_delete_form
+      post :bulk_delete
 
       get  :not_submit_period
     end

@@ -1,0 +1,27 @@
+<% provide(:title, 'シフト調整中') %>
+<div class="wrapper">
+    <h1>シフト最終確認ページ</h1>
+    <div class="button" id="temp_btn"> 
+        <%= link_to "戻る", temporary_shifts_path, class: "btn btn-danger" %>
+    </div>  
+
+    <div class="training">
+        <p>トレーニング中</p>
+    </div>
+    <div class="normal">
+        <p>通常</p>
+    </div>
+
+
+    <div class="all-calendar">
+        <div id="calendar"></div>
+    </div>
+
+    <div class="confirm">
+        <%= link_to "確定する", perfect_temporary_shifts_path, method: :patch, class:"btn btn-danger", data: { confirm: "【確認】このシフトで確定して本当によろしいですか？" }%>
+    </div> 
+
+
+    <%= javascript_pack_tag 'verification/calendar' %>
+    <%= javascript_pack_tag 'shared/index' %>
+</div>

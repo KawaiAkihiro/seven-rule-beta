@@ -12,6 +12,7 @@
     <%= link_to "提出を終了する", finish_individual_shifts_path, method: :post, class:"btn btn-primary", data: { confirm: '終了してよろしいですか？(追加登録は可能です)' } %>
   </div>
   <button type="button" name="name" class="bulk btn btn-primary">一括登録する</button>
+  <button type="button" name="name" class="bulk_delete btn btn-danger">複数削除</button>
   <% if current_staff.training_mode == true %>
     <div id="navi_open" class="navi">
       <label class="toggle" for="navi-open"><i class="fas fa-angle-double-right" aria-hidden="true"></i></label>

@@ -51,7 +51,8 @@ class IndividualShift < ApplicationRecord
   end
 
   def fulltime
-    str = [ "#{self.start.strftime("%m/%d %H")}" + "時", "#{self.finish.strftime("%H")}" + "時" ]
+    wd = ["日", "月", "火", "水", "木", "金", "土"]
+    str = [ "#{self.start.strftime("%m/%d(#{wd[self.start.wday]}) %H")}" + "時", "#{self.finish.strftime("%H")}" + "時" ]
     return str.join(" ~ ")
   end
 
